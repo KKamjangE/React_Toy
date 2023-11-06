@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../components/common/Button";
-import home from "../api/home";
+import centerAPI from "../api/centerAPI";
 import { useCentersStore } from "./../store/store";
 import Center from "../components/list/Center";
 
@@ -10,8 +10,7 @@ const Home = () => {
     const { centers, setCenters } = useCentersStore();
 
     const onHandleClickGetCenters = async () => {
-        const { data } = await home.getCenters(page, perPage);
-        console.log(data);
+        const { data } = await centerAPI.getSearchCenters(page, perPage);
         setCenters(data);
     };
 
