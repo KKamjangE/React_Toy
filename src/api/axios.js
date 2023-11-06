@@ -30,19 +30,38 @@ const generateQueryEndPoint = (endPoint, data) => {
     return `${endPoint}${queryString}`;
 };
 
+// 요청 config 핸들러
+const requestSuccesHandler = (config) => {
+    // const accessToken = "";
+
+    // if (accessToken) {
+    //     config.headers["Authorizaion"] = `Bearer ${accessToken}`;
+    // }
+
+    return config;
+};
+
 // 요청 에러 핸들러
 const requestErrorHandler = (err) => {
+    console.log(err);
     return Promise.reject(err);
 };
 
 // 응답 에러 핸들러
 const responseErrorHandler = (err) => {
+    console.log(err);
     return Promise.reject(err);
 };
 
-// axios 인터셉터로 에러 핸들링
-axiosInstance.interceptors.request.use((err) => requestErrorHandler(err));
-axiosInstance.interceptors.response.use((err) => responseErrorHandler(err));
+// axios 인터셉터
+axiosInstance.interceptors.request.use(
+    (config) => requestSuccesHandler(config),
+    (err) => requestErrorHandler(err)
+);
+axiosInstance.interceptors.response.use(
+    (response) => response,
+    (err) => responseErrorHandler(err)
+);
 
 // 공통 get 요청
 export const getAPI = ({ endPoint, data, axiosOption }) => {
@@ -55,6 +74,11 @@ export const getAPI = ({ endPoint, data, axiosOption }) => {
 // 공통 post 요청
 export const postAPI = ({ endPoint, data, axiosOption }) => {
     return axiosInstance.post(endPoint, data, axiosOption);
+};
+
+// 공통 delete 요청
+export const deleteAPI = ({ endPoint, data, axiosOption }) => {
+    return axiosInstance.delete(endPoint, data, axiosOption);
 };
 
 // 공공 데이터 포털 get 요청
