@@ -43,12 +43,14 @@ const requestSuccesHandler = (config) => {
 
 // 요청 에러 핸들러
 const requestErrorHandler = (err) => {
+    alert(err.config.message);
     console.log(err);
     return Promise.reject(err);
 };
 
 // 응답 에러 핸들러
 const responseErrorHandler = (err) => {
+    alert(err.config.message);
     console.log(err);
     return Promise.reject(err);
 };
