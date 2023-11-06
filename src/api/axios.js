@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import { BASE_URL, POTAL_URL } from "./api";
+import { BASE_URL } from "./api";
 
 // axios 기본 설정
 export const axiosInstance = axios.create({
@@ -14,7 +14,7 @@ export const axiosInstance = axios.create({
 
 // 데이터 포털 요청 기본 설정
 export const axiosPotalInstance = axios.create({
-    baseURL: POTAL_URL,
+    baseURL: import.meta.env.VITE_POTAL_BASE_URL,
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
