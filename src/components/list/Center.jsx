@@ -1,9 +1,22 @@
 import { PropTypes } from "prop-types";
 import Button from "../common/Button";
+import centerAPI from "../../api/centerAPI";
 
 const Center = ({ center }) => {
-    const onHandleClickSaveCenter = async () => {};
-    const onHandleClickDeleteCenter = async () => {};
+    const onHandleClickSaveCenter = async () => {
+        const data = {
+            id: center.id,
+            address: center.address,
+            centerName: center.centerName,
+            updatedAt: center.updatedAt,
+        };
+        centerAPI.postCenter(data);
+    };
+
+    const onHandleClickDeleteCenter = async () => {
+        centerAPI.deleteCenter(center.id);
+    };
+
     return (
         <article className="flex items-end justify-between gap-4 bg-white px-12 py-5 mt-5 shadow-lg rounded">
             <div>
