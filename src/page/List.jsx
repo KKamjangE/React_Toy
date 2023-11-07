@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react";
-import centerAPI from "../api/centerAPI";
 import Center from "../components/list/Center";
+import { useGetCenters } from "../hooks/queries/centerAPI";
 
 const List = () => {
-    const [centers, setCenters] = useState();
-
-    useEffect(() => {
-        const { data } = centerAPI.getCenters();
-        if (data) {
-            setCenters(data);
-        }
-    }, []);
-
+    const { data, isSuccess } = useGetCenters();
     return (
-        <section>
-            {centers ? (
-                centers.map((center) => (
+        <section className="w-1/3">
+            {isSuccess && data.data.data.centers.length > 0 ? (
+                data.data.data.centers.map((center) => (
                     <Center key={center.id} center={center} />
                 ))
             ) : (
-                <div>
+                <div className="flex justify-center">
                     <p>저장된 데이터가 없습니다.</p>
                 </div>
             )}

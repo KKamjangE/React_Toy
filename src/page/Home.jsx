@@ -1,17 +1,14 @@
-import { useState } from "react";
 import Button from "../components/common/Button";
-import centerAPI from "../api/centerAPI";
-import { useCentersStore } from "./../store/store";
+import { useSearchStateStore } from "./../store/store";
 import Center from "../components/list/Center";
+import { useGetSearchCenters } from "../hooks/queries/centerAPI";
 
 const Home = () => {
-    const [page, setPage] = useState(1);
-    const [perPage, setPerPage] = useState(10);
-    const { centers, setCenters } = useCentersStore();
+    const { page, perPage, setPage, setPerPage } = useSearchStateStore();
+    const { data, refetch } = useGetSearchCenters(page, perPage);
 
-    const onHandleClickGetCenters = async () => {
-        const { data } = await centerAPI.getSearchCenters(page, perPage);
-        setCenters(data.data);
+    const onHandleClickGetCenters = () => {
+        refetch();
     };
 
     return (
@@ -45,8 +42,8 @@ const Home = () => {
                 </div>
                 <Button text={"조회"} clickEvent={onHandleClickGetCenters} />
             </div>
-            {centers.length > 0 &&
-                centers.map((center) => (
+            {data &&
+                data.data.data.map((center) => (
                     <Center key={center.id} center={center} />
                 ))}
         </section>

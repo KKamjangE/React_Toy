@@ -1,20 +1,22 @@
-import { PropTypes } from "prop-types";
+import PropsTypes from "prop-types";
 import Button from "../common/Button";
-import centerAPI from "../../api/centerAPI";
+import { useDeleteCenter, usePostCenter } from "../../hooks/queries/centerAPI";
 
 const Center = ({ center }) => {
-    const onHandleClickSaveCenter = async () => {
-        const data = {
+    const { mutate: postMutate } = usePostCenter();
+    const { mutate: deleteMutate } = useDeleteCenter();
+
+    const onHandleClickSaveCenter = () => {
+        postMutate({
             id: center.id,
             address: center.address,
             centerName: center.centerName,
             updatedAt: center.updatedAt,
-        };
-        centerAPI.postCenter(data);
+        });
     };
 
-    const onHandleClickDeleteCenter = async () => {
-        centerAPI.deleteCenter(center.id);
+    const onHandleClickDeleteCenter = () => {
+        deleteMutate(center.id);
     };
 
     return (
@@ -38,7 +40,7 @@ const Center = ({ center }) => {
 };
 
 Center.propTypes = {
-    center: PropTypes.object,
+    center: PropsTypes.object.isRequired,
 };
 
 export default Center;
