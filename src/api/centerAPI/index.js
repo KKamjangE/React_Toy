@@ -11,7 +11,7 @@ const postCenter = (data) => {
 };
 
 const getCenters = () => {
-    getAPI({ endPoint: API_PATH.GET_CENTERS });
+    return getAPI({ endPoint: API_PATH.GET_CENTERS });
 };
 
 const deleteCenter = (idx) => {
