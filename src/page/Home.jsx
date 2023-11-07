@@ -11,7 +11,7 @@ const Home = () => {
 
     const onHandleClickGetCenters = async () => {
         const { data } = await centerAPI.getSearchCenters(page, perPage);
-        setCenters(data);
+        setCenters(data.data);
     };
 
     return (
@@ -45,8 +45,8 @@ const Home = () => {
                 </div>
                 <Button text={"조회"} clickEvent={onHandleClickGetCenters} />
             </div>
-            {centers &&
-                centers.data.map((center) => (
+            {centers.length > 0 &&
+                centers.map((center) => (
                     <Center key={center.id} center={center} />
                 ))}
         </section>
