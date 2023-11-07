@@ -61,7 +61,10 @@ axiosInstance.interceptors.request.use(
     (err) => requestErrorHandler(err)
 );
 axiosInstance.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        console.log(response);
+        return response;
+    },
     (err) => responseErrorHandler(err)
 );
 
