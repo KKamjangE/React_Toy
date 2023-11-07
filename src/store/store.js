@@ -1,14 +1,16 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useCentersStore = create(
+export const useSearchStateStore = create(
     persist(
         (set) => ({
-            centers: [],
-            setCenters: (newCenters) => set({ centers: newCenters }),
+            page: 1,
+            perPage: 10,
+            setPage: (newPage) => set({ page: newPage }),
+            setPerPage: (newPerPage) => set({ perPage: newPerPage }),
         }),
         {
-            name: "center-storage",
+            name: "search-state-storage",
             storage: createJSONStorage(() => localStorage),
         }
     )
