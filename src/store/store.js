@@ -4,7 +4,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 export const useCentersStore = create(
     persist(
         (set) => ({
-            centers: null,
+            centers: [],
             setCenters: (newCenters) => set({ centers: newCenters }),
         }),
         {
