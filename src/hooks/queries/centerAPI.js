@@ -44,8 +44,27 @@ export const useDeleteCenter = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: centerAPI.deleteCenter,
-        onSuccess: () => {
-            queryClient.invalidateQueries("getCenters");
+        onMutate: async (variables) => {
+            await queryClient.cancelQueries({ queryKey: ["getCenters"] }); // 쿼리 요청 취소
+
+            const oldData = queryClient.getQueryData(["getCenters"]); // 현재 캐시된 데이터 가져오기
+
+            // 새로운 데이터로 가공
+            const newData = { ...oldData };
+            newData.centers = newData.centers.filter(
+                (item) => item.id !== variables
+            );
+
+            queryClient.setQueryData(["getCenters"], {
+                ...newData, // 새로운 데이터로 캐시에 저장
+            });
+
+            return { oldData }; // 다음 context로 넘기기 위해 반환
+        },
+        onError: (err, _, context) => {
+            // 에러 발생시 이전 데이터로 캐시 저장
+            queryClient.setQueryData(["getCenters"], { ...context.oldData });
+            console.log(err);
         },
     });
 };
