@@ -9,4 +9,6 @@ export const API_PATH = {
     POST_CENTER: "/center",
     GET_CENTERS: "/center",
     DELETE_CENTER: (idx) => `/center?idx=${idx}`,
+    POST_SIGN_IN: "/sign/in",
+    POST_SIGN_UP: "/sign/up",
 };
