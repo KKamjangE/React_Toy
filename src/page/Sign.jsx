@@ -6,13 +6,13 @@ const Sign = () => {
     const [isSignIn, setIsSignIn] = useState(true);
 
     return (
-        <>
+        <section>
             {isSignIn ? (
                 <SignIn setIsSignIn={setIsSignIn} />
             ) : (
                 <SignUp setIsSignIn={setIsSignIn} />
             )}
-        </>
+        </section>
     );
 };
 
