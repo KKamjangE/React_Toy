@@ -43,14 +43,14 @@ const requestSuccesHandler = (config) => {
 
 // 요청 에러 핸들러
 const requestErrorHandler = (err) => {
-    alert(err.config.message);
+    alert(err);
     console.log(err);
     return Promise.reject(err);
 };
 
 // 응답 에러 핸들러
 const responseErrorHandler = (err) => {
-    alert(err.config.message);
+    alert(err);
     console.log(err);
     return Promise.reject(err);
 };
@@ -62,8 +62,8 @@ axiosInstance.interceptors.request.use(
 );
 axiosInstance.interceptors.response.use(
     (response) => {
-        console.log(response);
-        return response;
+        console.log(response.data.responseMessage);
+        return response.data.data;
     },
     (err) => responseErrorHandler(err)
 );
