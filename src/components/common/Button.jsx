@@ -1,6 +1,6 @@
 import PropsTypes from "prop-types";
 
-const Button = ({ text, clickEvent, color }) => {
+const Button = ({ text, clickEvent, color, type }) => {
     const classProps = {
         teal: "bg-teal-500 hover:bg-teal-700",
         red: "bg-red-600 hover:bg-red-700",
@@ -16,6 +16,7 @@ const Button = ({ text, clickEvent, color }) => {
                 color
             )} rounded px-3 py-1 text-white transition`}
             onClick={clickEvent}
+            type={type}
         >
             {text}
         </button>
@@ -24,12 +25,15 @@ const Button = ({ text, clickEvent, color }) => {
 
 Button.defaultProps = {
     color: "teal",
+    type: "button",
+    clickEvent: () => {},
 };
 
 Button.propTypes = {
     text: PropsTypes.string.isRequired,
-    clickEvent: PropsTypes.func.isRequired,
+    clickEvent: PropsTypes.func,
     color: PropsTypes.string,
+    type: PropsTypes.string,
 };
 
 export default Button;
