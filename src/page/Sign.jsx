@@ -6,7 +6,7 @@ const Sign = () => {
     const [isSignIn, setIsSignIn] = useState(true);
 
     return (
-        <section>
+        <section className="w-1/3">
             {isSignIn ? (
                 <SignIn setIsSignIn={setIsSignIn} />
             ) : (

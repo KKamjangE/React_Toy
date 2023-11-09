@@ -3,14 +3,13 @@ import { useGetCenters } from "../hooks/queries/centerAPI";
 
 const List = () => {
     const { data, isLoading } = useGetCenters();
-
     return (
         <section className="w-1/3">
             {isLoading ? (
                 <div className="flex justify-center">
                     <p>데이터를 불러오는 중 입니다.</p>
                 </div>
-            ) : data.centers.length !== 0 ? (
+            ) : data.centers.length > 0 ? (
                 data.centers.map((center) => (
                     <Center key={center.id} center={center} />
                 ))
