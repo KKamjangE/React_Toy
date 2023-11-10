@@ -33,10 +33,10 @@ const generateQueryEndPoint = (endPoint, data) => {
 
 // 요청 config 핸들러
 const requestSuccesHandler = (config) => {
-    const accessToken = useMemberStore.getState().accessToken;
+    const memberInfo = useMemberStore.getState().memberInfo;
 
-    if (accessToken) {
-        config.headers["Authorizaion"] = `Bearer ${accessToken}`;
+    if (memberInfo.accessToken) {
+        config.headers["Authorizaion"] = `Bearer ${memberInfo.accessToken}`;
     }
 
     return config;

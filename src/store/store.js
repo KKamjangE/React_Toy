@@ -35,10 +35,13 @@ export const useSignStore = create(
 export const useMemberStore = create(
     persist(
         (set) => ({
-            accessToken: null,
-            memberName: null,
-            setAccessToken: (newToken) => set({ accessToken: newToken }),
-            setMemberName: (newName) => set({ memberName: newName }),
+            memberInfo: {
+                accessToken: null,
+                memberName: null,
+            },
+            isSignIn: false,
+            setMemberInfo: (newInfo) => set({ memberInfo: newInfo }),
+            setIsSignIn: (newState) => set({ isSignIn: newState }),
         }),
         {
             name: "member-storage",

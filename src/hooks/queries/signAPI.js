@@ -4,14 +4,20 @@ import { useMemberStore, useSignStore } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 
 export const usePostSignIn = () => {
-    const { setAccessToken, setMemberName } = useMemberStore();
+    const { setMemberInfo, setIsSignIn } = useMemberStore((state) => ({
+        setMemberInfo: state.setMemberInfo,
+        setIsSignIn: state.setIsSignIn,
+    }));
     const navigater = useNavigate();
     return useMutation({
         mutationFn: signAPI.postSignIn,
         onSuccess: (data) => {
             if (data.statusCode === 200) {
-                setAccessToken(data.data.jwt);
-                setMemberName(data.data.userName);
+                setMemberInfo({
+                    accessToken: data.data.jwt,
+                    memberName: data.data.userName,
+                });
+                setIsSignIn(true);
                 navigater("/");
             }
             alert(data.responseMessage);
