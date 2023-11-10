@@ -1,6 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 import { BASE_URL } from "./api";
+import { useMemberStore } from "../store/store";
 
 // axios 기본 설정
 export const axiosInstance = axios.create({
@@ -32,11 +33,11 @@ const generateQueryEndPoint = (endPoint, data) => {
 
 // 요청 config 핸들러
 const requestSuccesHandler = (config) => {
-    // const accessToken = "";
+    const accessToken = useMemberStore.getState().accessToken;
 
-    // if (accessToken) {
-    //     config.headers["Authorizaion"] = `Bearer ${accessToken}`;
-    // }
+    if (accessToken) {
+        config.headers["Authorizaion"] = `Bearer ${accessToken}`;
+    }
 
     return config;
 };
