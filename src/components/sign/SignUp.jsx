@@ -1,64 +1,104 @@
 import Button from "../common/Button";
-import propsTypes from "prop-types";
+import PropsTypes from "prop-types";
+import { useForm } from "react-hook-form";
+import { usePostSignUp } from "../../hooks/queries/signAPI";
+import Input from "./Input";
 
 const SignUp = ({ setIsSignIn }) => {
-    const onHandleSubmitSign = () => {};
+    const defaultValues = {
+        Name: "",
+        "User ID": "",
+        Password: "",
+        "Check Password": "",
+    };
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        watch,
+    } = useForm({ defaultValues });
+
+    const { mutate } = usePostSignUp();
+
+    const onHandleSubmitSign = (data) => {
+        mutate({
+            name: data["Name"],
+            userId: data["User ID"],
+            password: data["Password"],
+        });
+    };
+
+    const validatePassword = (value) => {
+        const password = watch("Password");
+        return value === password || "password do not match";
+    };
+
     return (
-        <section className="w-1/3 flex flex-col items-center gap-10 bg-white py-10 rounded">
+        <form
+            className="flex flex-col items-center gap-10 bg-white py-10 rounded"
+            onSubmit={handleSubmit(onHandleSubmitSign)}
+        >
             <div className="flex flex-col gap-5">
                 <p className="text-xl font-semibold">Sign-up</p>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="sign-up-name">User Name</label>
-                    <input
-                        id="sign-up-name"
-                        className="border hover:border-teal-500 focus:outline-teal-600 transition px-2 py-1"
-                        type="text"
-                        placeholder="New Name"
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="sign-up-id">User ID</label>
-                    <input
-                        id="sign-up-id"
-                        className="border hover:border-teal-500 focus:outline-teal-600 transition px-2 py-1"
-                        type="text"
-                        placeholder="New ID"
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="sign-up-password">Password</label>
-                    <input
-                        id="sign-up-password"
-                        className="border hover:border-teal-500 focus:outline-teal-600 transition px-2 py-1"
-                        type="password"
-                        placeholder="New Password"
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="sign-up-check-password">
-                        Check Password
-                    </label>
-                    <input
-                        id="sign-up-check-password"
-                        className="border hover:border-teal-500 focus:outline-teal-600 transition px-2 py-1"
-                        type="password"
-                        placeholder="Check Password"
-                    />
-                </div>
-            </div>
-            <div className="flex gap-5">
-                <Button text="Submit" clickEvent={onHandleSubmitSign} />
-                <Button
-                    text={"Sign-in"}
-                    clickEvent={() => setIsSignIn((prev) => !prev)}
+                <Input
+                    label={"Name"}
+                    register={register}
+                    options={{
+                        required: "name is required!",
+                        minLength: 3,
+                        maxLength: 10,
+                        pattern: /[A-Za-z0-9]/g,
+                    }}
+                    errors={errors}
+                />
+                <Input
+                    label={"User ID"}
+                    register={register}
+                    options={{
+                        required: "ID is required!",
+                        minLength: 3,
+                        maxLength: 20,
+                        pattern: /[A-Za-z0-9]/g,
+                    }}
+                    errors={errors}
+                />
+                <Input
+                    label={"Password"}
+                    register={register}
+                    options={{
+                        required: "Password is required!",
+                        minLength: 4,
+                        maxLength: 20,
+                        pattern: /[A-Za-z0-9]/g,
+                    }}
+                    type={"password"}
+                    errors={errors}
+                />
+                <Input
+                    label={"Check Password"}
+                    register={register}
+                    options={{
+                        required: true,
+                        minLength: 4,
+                        maxLength: 20,
+                        pattern: /[A-Za-z0-9]/g,
+                        validate: validatePassword,
+                    }}
+                    type={"password"}
+                    errors={errors}
                 />
             </div>
-        </section>
+            <div className="flex gap-5">
+                <Button text={"Submit"} type={"submit"} />
+                <Button text={"Sign-in"} clickEvent={setIsSignIn} />
+            </div>
+        </form>
     );
 };
 
 SignUp.propTypes = {
-    setIsSignIn: propsTypes.func.isRequired,
+    setIsSignIn: PropsTypes.func.isRequired,
 };
 
 export default SignUp;
