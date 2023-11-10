@@ -10,7 +10,23 @@ export const useSearchStateStore = create(
             setPerPage: (newPerPage) => set({ perPage: newPerPage }),
         }),
         {
-            name: "search-state-storage",
+            name: "search-storage",
+            storage: createJSONStorage(() => localStorage),
+        }
+    )
+);
+
+export const useSignStore = create(
+    persist(
+        (set) => ({
+            isSignInView: true,
+            setIsSignInView: () =>
+                set((state) => ({
+                    isSignIn: !state.isSignIn,
+                })),
+        }),
+        {
+            name: "sign-storage",
             storage: createJSONStorage(() => localStorage),
         }
     )

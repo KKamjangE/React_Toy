@@ -1,16 +1,16 @@
-import { useState } from "react";
 import SignIn from "../components/sign/SignIn";
 import SignUp from "../components/sign/SignUp";
+import { useSignStore } from "../store/store";
 
 const Sign = () => {
-    const [isSignIn, setIsSignIn] = useState(true);
+    const { isSignInView, setIsSignInView } = useSignStore();
 
     return (
         <section className="w-1/3">
-            {isSignIn ? (
-                <SignIn setIsSignIn={setIsSignIn} />
+            {isSignInView ? (
+                <SignIn setIsSignInView={setIsSignInView} />
             ) : (
-                <SignUp setIsSignIn={setIsSignIn} />
+                <SignUp setIsSignInView={setIsSignInView} />
             )}
         </section>
     );

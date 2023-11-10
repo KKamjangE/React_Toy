@@ -1,10 +1,10 @@
 import Button from "../common/Button";
 import PropsTypes from "prop-types";
 
-const SignIn = ({ setIsSignIn }) => {
+const SignIn = ({ setIsSignInView }) => {
     const onHandleSubmitSign = () => {};
     return (
-        <section className="w-1/3 flex flex-col items-center gap-10 bg-white py-10 rounded">
+        <form className="flex flex-col items-center gap-10 bg-white py-10 rounded">
             <div className="flex flex-col gap-5">
                 <p className="text-xl font-semibold">Sign-in</p>
                 <div className="flex flex-col gap-2">
@@ -28,18 +28,19 @@ const SignIn = ({ setIsSignIn }) => {
             </div>
 
             <div className="flex gap-5">
-                <Button text="Submit" clickEvent={onHandleSubmitSign} />
                 <Button
-                    text={"Sign-up"}
-                    clickEvent={() => setIsSignIn((prev) => !prev)}
+                    text="Submit"
+                    clickEvent={onHandleSubmitSign}
+                    type={"submit"}
                 />
+                <Button text={"Sign-up"} clickEvent={setIsSignInView} />
             </div>
-        </section>
+        </form>
     );
 };
 
 SignIn.propTypes = {
-    setIsSignIn: PropsTypes.func.isRequired,
+    setIsSignInView: PropsTypes.func.isRequired,
 };
 
 export default SignIn;

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { usePostSignUp } from "../../hooks/queries/signAPI";
 import Input from "./Input";
 
-const SignUp = ({ setIsSignIn }) => {
+const SignUp = ({ setIsSignInView }) => {
     const defaultValues = {
         Name: "",
         "User ID": "",
@@ -91,14 +91,14 @@ const SignUp = ({ setIsSignIn }) => {
             </div>
             <div className="flex gap-5">
                 <Button text={"Submit"} type={"submit"} />
-                <Button text={"Sign-in"} clickEvent={setIsSignIn} />
+                <Button text={"Sign-in"} clickEvent={setIsSignInView} />
             </div>
         </form>
     );
 };
 
 SignUp.propTypes = {
-    setIsSignIn: PropsTypes.func.isRequired,
+    setIsSignInView: PropsTypes.func.isRequired,
 };
 
 export default SignUp;
