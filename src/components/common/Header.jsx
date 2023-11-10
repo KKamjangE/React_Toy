@@ -2,19 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMemberStore } from "../../store/store";
 
 const Header = () => {
-    const { memberInfo, clearMemberInfo, setIsSignIn } = useMemberStore(
-        (state) => ({
-            memberInfo: state.memberInfo,
-            clearMemberInfo: state.clearMemberInfo,
-            setIsSignIn: state.setIsSignIn,
-        })
-    );
+    const { memberInfo, clearMember } = useMemberStore((state) => ({
+        memberInfo: state.memberInfo,
+        clearMember: state.clearMember,
+    }));
 
     const navigater = useNavigate();
 
     const onHandleClickSignOut = () => {
-        setIsSignIn(false);
-        clearMemberInfo();
+        clearMember();
         alert("로그아웃.");
         navigater("/sign");
     };
