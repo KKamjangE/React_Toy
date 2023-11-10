@@ -41,6 +41,8 @@ export const useMemberStore = create(
             },
             isSignIn: false,
             setMemberInfo: (newInfo) => set({ memberInfo: newInfo }),
+            clearMemberInfo: () =>
+                set({ memberInfo: { accessToken: null, memberName: null } }),
             setIsSignIn: (newState) => set({ isSignIn: newState }),
         }),
         {

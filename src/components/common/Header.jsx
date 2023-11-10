@@ -1,8 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMemberStore } from "../../store/store";
 
 const Header = () => {
-    const memberInfo = useMemberStore((state) => state.memberInfo);
+    const { memberInfo, clearMemberInfo, setIsSignIn } = useMemberStore(
+        (state) => ({
+            memberInfo: state.memberInfo,
+            clearMemberInfo: state.clearMemberInfo,
+            setIsSignIn: state.setIsSignIn,
+        })
+    );
+
+    const navigater = useNavigate();
+
+    const onHandleClickSignOut = () => {
+        setIsSignIn(false);
+        clearMemberInfo();
+        alert("로그아웃.");
+        navigater("/sign");
+    };
+
     return (
         <div className="flex justify-center items-center gap-5 p-4 shadow-lg bg-white sticky top-0">
             <h1>Toy Project</h1>
@@ -19,9 +35,13 @@ const Header = () => {
                 List
             </Link>
             {memberInfo.memberName ? (
-                <span className="text-sm text-teal-500 font-bold">
+                <button
+                    className="text-sm text-teal-500 font-bold"
+                    type="text"
+                    onClick={onHandleClickSignOut}
+                >
                     {memberInfo.memberName}
-                </span>
+                </button>
             ) : (
                 <Link
                     to="/sign"
