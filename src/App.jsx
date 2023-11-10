@@ -3,7 +3,7 @@ import Header from "./components/common/Header";
 import Home from "./page/Home";
 import List from "./page/List";
 import Sign from "./page/Sign";
-import Layout from "./page/Layout";
+import Layout from "./components/common/Layout";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 
