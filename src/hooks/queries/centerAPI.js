@@ -50,8 +50,10 @@ export const useDeleteCenter = () => {
             const oldData = queryClient.getQueryData(["getCenters"]); // 현재 캐시된 데이터 가져오기
 
             // 새로운 데이터로 가공
-            const newData = { ...oldData };
-            newData.centers = newData.centers.filter(
+            const newData = { ...oldData }; // 객체 복사
+
+            newData.data = [...oldData.data].filter(
+                // 내부 데이터 복사
                 (item) => item.id !== variables
             );
 
