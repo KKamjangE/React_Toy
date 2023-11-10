@@ -9,8 +9,8 @@ const List = () => {
                 <div className="flex justify-center">
                     <p>데이터를 불러오는 중 입니다.</p>
                 </div>
-            ) : data.centers.length > 0 ? (
-                data.centers.map((center) => (
+            ) : data.data.length > 0 ? (
+                data.data.map((center) => (
                     <Center key={center.id} center={center} />
                 ))
             ) : (
