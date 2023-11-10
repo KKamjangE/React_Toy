@@ -22,7 +22,7 @@ export const useSignStore = create(
             isSignInView: true,
             setIsSignInView: () =>
                 set((state) => ({
-                    isSignIn: !state.isSignIn,
+                    isSignInView: !state.isSignInView,
                 })),
         }),
         {
