@@ -31,3 +31,18 @@ export const useSignStore = create(
         }
     )
 );
+
+export const useMemberStore = create(
+    persist(
+        (set) => ({
+            accessToken: null,
+            memberName: null,
+            setAccessToken: (newToken) => set({ accessToken: newToken }),
+            setMemberName: (newName) => set({ memberName: newName }),
+        }),
+        {
+            name: "member-storage",
+            storage: createJSONStorage(() => localStorage),
+        }
+    )
+);
