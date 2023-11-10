@@ -1,18 +1,27 @@
 import PropsTypes from "prop-types";
 import Button from "../common/Button";
 import { useDeleteCenter, usePostCenter } from "../../hooks/queries/centerAPI";
+import { useMemberStore } from "../../store/store";
+import { useNavigate } from "react-router-dom";
 
 const Center = ({ center }) => {
     const { mutate: postMutate } = usePostCenter();
     const { mutate: deleteMutate } = useDeleteCenter();
+    const isSignIn = useMemberStore((state) => state.isSignIn);
+    const navigater = useNavigate();
 
     const onHandleClickSaveCenter = () => {
-        postMutate({
-            id: center.id,
-            address: center.address,
-            centerName: center.centerName,
-            updatedAt: center.updatedAt,
-        });
+        if (isSignIn) {
+            postMutate({
+                id: center.id,
+                address: center.address,
+                centerName: center.centerName,
+                updatedAt: center.updatedAt,
+            });
+        } else {
+            alert("로그인이 필요한 기능입니다.");
+            navigater("/sign");
+        }
     };
 
     const onHandleClickDeleteCenter = () => {
