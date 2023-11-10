@@ -4,6 +4,8 @@ import Home from "./page/Home";
 import List from "./page/List";
 import Sign from "./page/Sign";
 import Layout from "./page/Layout";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 function App() {
     return (
@@ -12,8 +14,12 @@ function App() {
             <Routes>
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="/list" element={<List />} />
-                    <Route path="/sign" element={<Sign />} />
+                    <Route element={<PrivateRoute />}>
+                        <Route path="/list" element={<List />} />
+                    </Route>
+                    <Route element={<PublicRoute />}>
+                        <Route path="/sign" element={<Sign />} />
+                    </Route>
                 </Route>
             </Routes>
         </>
