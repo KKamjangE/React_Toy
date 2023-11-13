@@ -74,7 +74,7 @@ export const useDeleteCenter = () => {
 
             return { oldData }; // 다음 context로 넘기기 위해 반환
         },
-        onError: (err, _, context) => {
+        onError: (err, context) => {
             // 에러 발생시 이전 데이터로 캐시 저장
             queryClient.setQueryData(["getCenters"], { ...context.oldData });
         },
