@@ -20,19 +20,29 @@ export const usePostSignIn = () => {
                 setIsSignIn(true);
                 navigater("/");
             }
-            alert(data.responseMessage);
+        },
+        onSettled: (data) => {
+            if (data.statusCode !== 200) {
+                alert(data.responseMessage);
+            }
         },
     });
 };
 
 export const usePostSignUp = () => {
-    const { setIsSignIn } = useSignStore();
+    const { setIsSignInView } = useSignStore((state) => ({
+        setIsSignInView: state.setIsSignInView,
+    }));
     return useMutation({
         mutationFn: signAPI.postSignUp,
         onSuccess: (data) => {
-            alert(data.responseMessage);
             if (data.statusCode === 200) {
-                setIsSignIn();
+                setIsSignInView();
+            }
+        },
+        onSettled: (data) => {
+            if (data.statusCode !== 200) {
+                alert(data.responseMessage);
             }
         },
     });
