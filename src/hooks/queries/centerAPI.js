@@ -1,6 +1,5 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import centerAPI from "../../api/centerAPI";
-import { useQueryClient } from "@tanstack/react-query";
 
 export const useGetSearchCenters = (page, perPage) => {
     const { data, isSuccess, isLoading, isError, refetch } = useQuery({
