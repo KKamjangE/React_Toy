@@ -7,7 +7,7 @@ const getSearchCenters = (page, perPage) =>
     });
 
 const postCenter = (data) => {
-    postAPI({ endPoint: API_PATH.POST_CENTER, data });
+    return postAPI({ endPoint: API_PATH.POST_CENTER, data });
 };
 
 const getCenters = () => {
@@ -15,7 +15,7 @@ const getCenters = () => {
 };
 
 const deleteCenter = (idx) => {
-    deleteAPI({ endPoint: API_PATH.DELETE_CENTER(idx) });
+    return deleteAPI({ endPoint: API_PATH.DELETE_CENTER(idx) });
 };
 
 export default {
