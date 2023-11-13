@@ -36,7 +36,7 @@ const requestSuccesHandler = (config) => {
     const memberInfo = useMemberStore.getState().memberInfo;
 
     if (memberInfo.accessToken) {
-        config.headers["Authorizaion"] = `Bearer ${memberInfo.accessToken}`;
+        config.headers["Authorization"] = `Bearer ${memberInfo.accessToken}`;
     }
 
     return config;
@@ -44,15 +44,11 @@ const requestSuccesHandler = (config) => {
 
 // 요청 에러 핸들러
 const requestErrorHandler = (err) => {
-    alert(err);
-    console.log(err);
     return Promise.reject(err);
 };
 
 // 응답 에러 핸들러
 const responseErrorHandler = (err) => {
-    alert(err);
-    console.log(err);
     return Promise.reject(err);
 };
 
