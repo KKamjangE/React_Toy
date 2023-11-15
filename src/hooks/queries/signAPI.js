@@ -21,11 +21,6 @@ export const usePostSignIn = () => {
                 navigater("/");
             }
         },
-        onSettled: (data) => {
-            if (data.statusCode !== 200) {
-                alert(data.responseMessage);
-            }
-        },
     });
 };
 
@@ -38,11 +33,6 @@ export const usePostSignUp = () => {
         onSuccess: (data) => {
             if (data.statusCode === 200) {
                 setIsSignInView();
-            }
-        },
-        onSettled: (data) => {
-            if (data.statusCode !== 200) {
-                alert(data.responseMessage);
             }
         },
     });

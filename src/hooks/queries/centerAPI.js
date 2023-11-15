@@ -25,11 +25,6 @@ export const useGetCenters = () => {
         queryFn: () => {
             return centerAPI.getCenters();
         },
-        onSettled: (data) => {
-            if (data.statusCode !== 200) {
-                alert(data.responseMessage);
-            }
-        },
     });
 
     return {
@@ -41,14 +36,7 @@ export const useGetCenters = () => {
 };
 
 export const usePostCenter = () => {
-    return useMutation({
-        mutationFn: centerAPI.postCenter,
-        onSettled: (data) => {
-            if (data.statusCode !== 200) {
-                alert(data.responseMessage);
-            }
-        },
-    });
+    return useMutation({ mutationFn: centerAPI.postCenter });
 };
 
 export const useDeleteCenter = () => {
@@ -77,11 +65,6 @@ export const useDeleteCenter = () => {
         onError: (err, context) => {
             // 에러 발생시 이전 데이터로 캐시 저장
             queryClient.setQueryData(["getCenters"], { ...context.oldData });
-        },
-        onSettled: (data) => {
-            if (data.statusCode !== 200) {
-                alert(data.responseMessage);
-            }
         },
     });
 };
