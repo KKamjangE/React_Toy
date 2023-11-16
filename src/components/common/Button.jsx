@@ -26,7 +26,7 @@ const Button = ({ text, clickEvent, color, type }) => {
 Button.defaultProps = {
     color: "teal",
     type: "button",
-    clickEvent: () => {},
+    clickEvent: null,
 };
 
 Button.propTypes = {
