@@ -1,5 +1,5 @@
 import Button from "../common/Button";
-import PropsTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { usePostSignUp } from "../../hooks/queries/signAPI";
 import Input from "./Input";
@@ -98,7 +98,7 @@ const SignUp = ({ setIsSignInView }) => {
 };
 
 SignUp.propTypes = {
-    setIsSignInView: PropsTypes.func.isRequired,
+    setIsSignInView: PropTypes.func.isRequired,
 };
 
 export default SignUp;

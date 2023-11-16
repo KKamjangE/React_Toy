@@ -1,4 +1,4 @@
-import PropsTypes from "prop-types";
+import PropTypes from "prop-types";
 import Button from "../common/Button";
 import { useDeleteCenter, usePostCenter } from "../../hooks/queries/centerAPI";
 import { useMemberStore } from "../../store/store";
@@ -49,7 +49,7 @@ const Center = ({ center }) => {
 };
 
 Center.propTypes = {
-    center: PropsTypes.object.isRequired,
+    center: PropTypes.object.isRequired,
 };
 
 export default Center;

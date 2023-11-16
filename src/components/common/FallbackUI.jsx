@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-const FallbackUI = (resetErrorBoundary) => {
+const FallbackUI = ({ error, resetErrorBoundary }) => {
     return (
         <div className="flex gap-5 justify-between items-center bg-white px-12 py-5">
-            <span>{resetErrorBoundary.error.message}...</span>
+            <span>{error.message}...</span>
             <div className="self-end">
                 <Button
-                    clickEvent={resetErrorBoundary.resetErrorBoundary}
+                    clickEvent={resetErrorBoundary}
                     text="Try again"
                     color={"red"}
                 />
@@ -16,8 +16,9 @@ const FallbackUI = (resetErrorBoundary) => {
     );
 };
 
-FallbackUI.propsTypes = {
-    resetErrorBoundary: PropTypes.object.isRequired,
+FallbackUI.propTypes = {
+    error: PropTypes.object.isRequired,
+    resetErrorBoundary: PropTypes.func.isRequired,
 };
 
 export default FallbackUI;

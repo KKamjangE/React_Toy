@@ -1,4 +1,4 @@
-import PropsTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const Button = ({ text, clickEvent, color, type }) => {
     const classProps = {
@@ -30,10 +30,10 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-    text: PropsTypes.string.isRequired,
-    clickEvent: PropsTypes.func,
-    color: PropsTypes.string,
-    type: PropsTypes.string,
+    text: PropTypes.string.isRequired,
+    clickEvent: PropTypes.func,
+    color: PropTypes.string,
+    type: PropTypes.string,
 };
 
 export default Button;

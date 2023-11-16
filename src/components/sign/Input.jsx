@@ -1,4 +1,4 @@
-import PropsTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const Input = ({ label, register, options, errors, type }) => {
     return (
@@ -23,11 +23,11 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-    label: PropsTypes.string.isRequired,
-    register: PropsTypes.func.isRequired,
-    options: PropsTypes.object,
-    type: PropsTypes.string,
-    errors: PropsTypes.object,
+    label: PropTypes.string.isRequired,
+    register: PropTypes.func.isRequired,
+    options: PropTypes.object,
+    type: PropTypes.string,
+    errors: PropTypes.object,
 };
 
 export default Input;
