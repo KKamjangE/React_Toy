@@ -1,6 +1,7 @@
 import CenterList from "../components/list/CenterList";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
+import FallbackUI from "../components/common/FallbackUI";
 
 const List = () => {
     return (
@@ -9,14 +10,7 @@ const List = () => {
                 {({ reset }) => (
                     <ErrorBoundary
                         onReset={reset}
-                        fallbackRender={({ resetErrorBoundary }) => (
-                            <div>
-                                There was an error!
-                                <button onClick={() => resetErrorBoundary()}>
-                                    Try again
-                                </button>
-                            </div>
-                        )}
+                        FallbackComponent={FallbackUI}
                     >
                         <CenterList />
                     </ErrorBoundary>
