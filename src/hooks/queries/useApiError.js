@@ -1,6 +1,7 @@
 import { useCallback } from "react";
+import { toast } from "react-toastify";
 
-const useApiHandler = () => {
+const useApiError = () => {
     const handleError = useCallback((error) => {
         const httpStatus = error.response.status;
         const serviceCode = error.response.data.code;
@@ -26,17 +27,22 @@ const defaultHandler = (httpMessage) => {
     alert(httpMessage);
 };
 
-const handler500 = () => {
-    console.log("Internal Server Error");
+const handler409 = () => {
+    toast.error("409 Error");
 };
 
 const handler40010001 = () => {
     return;
 };
 
+const handler500 = () => {
+    toast.error("서버에서 알 수 없는 문제가 발생하였습니다.");
+};
+
 const handlers = {
     default: defaultHandler,
-    400: {
+    409: {
+        default: handler409,
         10001: handler40010001,
     },
     500: {
@@ -44,4 +50,4 @@ const handlers = {
     },
 };
 
-export default useApiHandler;
+export default useApiError;

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/common/Header";
 import Home from "./page/Home";
 import List from "./page/List";
@@ -6,24 +6,31 @@ import Sign from "./page/Sign";
 import Layout from "./components/common/Layout";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+    QueryCache,
+    QueryClient,
+    QueryClientProvider,
+} from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { BrowserRouter } from "react-router-dom";
-import useApiHandler from "./hooks/queries/useApiError";
-import InternalServerError from "./page/InternalServerError";
+import useApiError from "./hooks/queries/useApiError";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-    const { handleError } = useApiHandler();
+    const { handleError } = useApiError();
 
     const queryClient = new QueryClient({
         defaultOptions: {
-            queries: {
-                throwOnError: handleError,
-            },
             mutations: {
                 onError: handleError,
             },
+            queries: {
+                throwOnError: true,
+            },
         },
+        queryCache: new QueryCache({
+            onError: handleError,
+        }),
     });
 
     return (
@@ -38,13 +45,17 @@ function App() {
                         </Route>
                         <Route element={<PublicRoute />}>
                             <Route path="/sign" element={<Sign />} />
-                            <Route
-                                path="/500"
-                                element={<InternalServerError />}
-                            />
                         </Route>
                     </Route>
                 </Routes>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    closeOnClick
+                    pauseOnHover
+                    theme="light"
+                    limit={3}
+                />
             </BrowserRouter>
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
