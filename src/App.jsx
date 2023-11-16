@@ -1,11 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/common/Header";
-import Home from "./page/Home";
-import List from "./page/List";
-import Sign from "./page/Sign";
-import Layout from "./components/common/Layout";
-import PrivateRoute from "./routes/PrivateRoute";
-import PublicRoute from "./routes/PublicRoute";
+import Router from "./routes/Router";
 import {
     QueryCache,
     QueryClient,
@@ -18,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     const { handleError } = useApiError();
-
     const queryClient = new QueryClient({
         defaultOptions: {
             mutations: {
@@ -35,28 +27,15 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <BrowserRouter>
-                <Header />
-                <Routes>
-                    <Route element={<Layout />}>
-                        <Route index element={<Home />} />
-                        <Route element={<PrivateRoute />}>
-                            <Route path="/list" element={<List />} />
-                        </Route>
-                        <Route element={<PublicRoute />}>
-                            <Route path="/sign" element={<Sign />} />
-                        </Route>
-                    </Route>
-                </Routes>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    closeOnClick
-                    pauseOnHover
-                    theme="light"
-                    limit={3}
-                />
-            </BrowserRouter>
+            <Router />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                closeOnClick
+                pauseOnHover
+                theme="light"
+                limit={3}
+            />
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     );
