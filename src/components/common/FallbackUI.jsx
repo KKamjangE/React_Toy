@@ -5,13 +5,11 @@ const FallbackUI = ({ error, resetErrorBoundary }) => {
     return (
         <div className="flex gap-5 justify-between items-center bg-white px-12 py-5">
             <span>{error.message}...</span>
-            <div className="self-end">
-                <Button
-                    clickEvent={resetErrorBoundary}
-                    text="Try again"
-                    color={"red"}
-                />
-            </div>
+            <Button
+                clickEvent={resetErrorBoundary}
+                text="Try again"
+                color={"red"}
+            />
         </div>
     );
 };
