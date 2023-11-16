@@ -12,14 +12,12 @@ export const usePostSignIn = () => {
     return useMutation({
         mutationFn: signAPI.postSignIn,
         onSuccess: (data) => {
-            if (data.statusCode === 200) {
-                setMemberInfo({
-                    accessToken: data.data.jwt,
-                    memberName: data.data.userName,
-                });
-                setIsSignIn(true);
-                navigater("/");
-            }
+            setMemberInfo({
+                accessToken: data.data.jwt,
+                memberName: data.data.userName,
+            });
+            setIsSignIn(true);
+            navigater("/");
         },
     });
 };
