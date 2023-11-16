@@ -11,7 +11,6 @@ const Header = () => {
 
     const onHandleClickSignOut = () => {
         clearMember();
-        alert("로그아웃.");
         navigater("/sign");
     };
 
