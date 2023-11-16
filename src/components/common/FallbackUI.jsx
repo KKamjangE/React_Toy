@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const FallbackUI = ({ error, resetErrorBoundary }) => {
     return (
-        <div className="flex gap-5 justify-between items-center bg-white px-12 py-5">
+        <div className="flex gap-5 justify-between items-center bg-white px-12 py-5 shadow-lg">
             <span>{error.message}...</span>
             <Button
                 clickEvent={resetErrorBoundary}
