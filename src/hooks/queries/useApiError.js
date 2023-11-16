@@ -31,8 +31,8 @@ const handler409 = () => {
     toast.error("409 Error");
 };
 
-const handler40010001 = () => {
-    return;
+const handler40910001 = () => {
+    toast.error("아이디 또는 비밀번호가 일치하지 않습니다.");
 };
 
 const handler500 = () => {
@@ -43,7 +43,7 @@ const handlers = {
     default: defaultHandler,
     409: {
         default: handler409,
-        10001: handler40010001,
+        10001: handler40910001,
     },
     500: {
         default: handler500,
