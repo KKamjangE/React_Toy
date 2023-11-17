@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./../components/common/Header";
 import Layout from "./../components/common/Layout";
-import Home from "./../page/Home";
+import Home from "./../pages/Home";
 import PrivateRoute from "./PrivateRoute";
-import List from "./../page/List";
+import List from "./../pages/List";
 import PublicRoute from "./PublicRoute";
-import Sign from "./../page/Sign";
+import Sign from "./../pages/Sign";
 
 const Router = () => {
     return (
