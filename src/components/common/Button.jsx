@@ -13,7 +13,7 @@ const Button = ({ text, clickEvent, color, type }) => {
     return (
         <button
             className={`${getClass(
-                color
+                color,
             )} rounded px-3 py-1 text-white transition`}
             onClick={clickEvent}
             type={type}

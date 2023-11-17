@@ -53,7 +53,7 @@ export const useDeleteCenter = () => {
 
             newData.data = [...oldData.data].filter(
                 // 내부 데이터 복사
-                (item) => item.id !== variables
+                (item) => item.id !== variables,
             );
 
             queryClient.setQueryData(["getCenters"], {
