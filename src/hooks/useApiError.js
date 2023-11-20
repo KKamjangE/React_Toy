@@ -37,6 +37,10 @@ const defaultHandler = (httpMessage) => {
     toast.error(httpMessage);
 };
 
+const handler404 = () => {
+    toast.error("404 Error");
+};
+
 const handler409 = () => {
     toast.error("409 Error");
 };
@@ -51,6 +55,9 @@ const handler500 = () => {
 
 const handlers = {
     default: defaultHandler,
+    404: {
+        default: handler404,
+    },
     409: {
         default: handler409,
         10001: handler40910001,
