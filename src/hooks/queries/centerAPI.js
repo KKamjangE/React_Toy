@@ -1,12 +1,15 @@
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import {
+    useQueryClient,
+    useQuery,
+    useMutation,
+    useSuspenseQuery,
+} from "@tanstack/react-query";
 import centerAPI from "../../api/centerAPI";
 
 export const useGetSearchCenters = (page, perPage) => {
     const { data, isSuccess, isLoading, isError, refetch } = useQuery({
         queryKey: ["getSearchCenters"],
-        queryFn: () => {
-            return centerAPI.getSearchCenters(page, perPage);
-        },
+        queryFn: () => centerAPI.getSearchCenters(page, perPage),
         enabled: false,
     });
 
@@ -20,11 +23,9 @@ export const useGetSearchCenters = (page, perPage) => {
 };
 
 export const useGetCenters = () => {
-    const { data, isSuccess, isLoading, isError } = useQuery({
+    const { data, isSuccess, isLoading, isError } = useSuspenseQuery({
         queryKey: ["getCenters"],
-        queryFn: () => {
-            return centerAPI.getCenters();
-        },
+        queryFn: () => centerAPI.getCenters(),
     });
 
     return {
