@@ -1,9 +1,8 @@
-import { useCallback } from "react";
 import { toast } from "react-toastify";
 
 const useApiError = () => {
     // useCallback을 사용해 함수 재사용
-    const handleError = useCallback((error) => {
+    const handleError = (error) => {
         // response가 없는 network error 처리
         if (error.response === undefined) {
             handlers.default(error.message);
@@ -28,7 +27,7 @@ const useApiError = () => {
 
         // 그 외의 예상치 못한 에러 처리
         handlers.default(httpMessage);
-    }, []);
+    };
 
     return { handleError };
 };
