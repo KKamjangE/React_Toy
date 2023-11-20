@@ -7,7 +7,7 @@ const SearchResult = () => {
         <>
             {data &&
                 data.data.data.map((center) => (
-                    <CenterItem key={center.id} {...center} />
+                    <CenterItem key={center.id} center={center} />
                 ))}
         </>
     );

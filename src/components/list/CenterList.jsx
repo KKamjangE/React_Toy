@@ -12,7 +12,7 @@ const CenterList = () => {
             )}
             {data &&
                 data.data.map((center) => (
-                    <CenterItem key={center.id} {...center} />
+                    <CenterItem key={center.id} center={center} />
                 ))}
             {data && data.data.length === 0 && (
                 <div className="flex justify-center">
