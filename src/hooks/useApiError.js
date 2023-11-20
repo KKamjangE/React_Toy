@@ -2,7 +2,9 @@ import { useCallback } from "react";
 import { toast } from "react-toastify";
 
 const useApiError = () => {
+    // useCallback을 사용해 함수 재사용
     const handleError = useCallback((error) => {
+        // response가 없는 network error 처리
         if (error.response === undefined) {
             handlers.default(error.message);
             return;
@@ -12,16 +14,19 @@ const useApiError = () => {
         const serviceCode = error.response.data.code;
         const httpMessage = error.response.data.message;
 
+        // 상태코드 + 서비스코드 에러 처리
         if (handlers[httpStatus][serviceCode]) {
             handlers[httpStatus][serviceCode]();
             return;
         }
 
+        // 상태코드만 있는 에러 처리
         if (handlers[httpStatus]) {
             handlers[httpStatus].default();
             return;
         }
 
+        // 그 외의 예상치 못한 에러 처리
         handlers.default(httpMessage);
     }, []);
 
