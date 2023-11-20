@@ -4,7 +4,7 @@ import { useDeleteCenter, usePostCenter } from "../../hooks/queries/centerAPI";
 import { useMemberStore } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 
-const CenterItem = ({ center }) => {
+const CenterItem = ({ id, address, centerName, updatedAt }) => {
     const { mutate: postMutate } = usePostCenter();
     const { mutate: deleteMutate } = useDeleteCenter();
     const isSignIn = useMemberStore((state) => state.isSignIn);
@@ -12,15 +12,15 @@ const CenterItem = ({ center }) => {
 
     const handleSaveCenter = () => {
         postMutate({
-            id: center.id,
-            address: center.address,
-            centerName: center.centerName,
-            updatedAt: center.updatedAt,
+            id,
+            address,
+            centerName,
+            updatedAt,
         });
     };
 
     const handleDeleteCenter = () => {
-        deleteMutate(center.id);
+        deleteMutate(id);
     };
 
     const handleClick = () => {
@@ -37,9 +37,9 @@ const CenterItem = ({ center }) => {
     return (
         <article className="flex items-end justify-between gap-4 bg-white px-12 py-5 mt-5 shadow-lg rounded">
             <div>
-                <h3>{center.centerName}</h3>
-                <p className="text-sm">{center.address}</p>
-                <span className="text-xs">Last update: {center.updatedAt}</span>
+                <h3>{centerName}</h3>
+                <p className="text-sm">{address}</p>
+                <span className="text-xs">Last update: {updatedAt}</span>
             </div>
             <Button
                 text={location.pathname === "/" ? "저장" : "삭제"}
@@ -51,7 +51,10 @@ const CenterItem = ({ center }) => {
 };
 
 CenterItem.propTypes = {
-    center: PropTypes.object.isRequired,
+    id: PropTypes.number,
+    address: PropTypes.string,
+    centerName: PropTypes.string,
+    updatedAt: PropTypes.string,
 };
 
 export default CenterItem;

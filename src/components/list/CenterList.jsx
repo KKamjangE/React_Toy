@@ -3,7 +3,6 @@ import CenterItem from "../common/CenterItem";
 
 const CenterList = () => {
     const { data, isLoading } = useGetCenters();
-
     return (
         <>
             {isLoading && (
@@ -13,7 +12,7 @@ const CenterList = () => {
             )}
             {data &&
                 data.data.map((center) => (
-                    <CenterItem key={center.id} center={center} />
+                    <CenterItem key={center.id} {...center} />
                 ))}
             {data && data.data.length === 0 && (
                 <div className="flex justify-center">
