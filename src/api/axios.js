@@ -55,21 +55,21 @@ const responseErrorHandler = (err) => {
 // axios 인터셉터
 axiosInstance.interceptors.request.use(
     (config) => requestSuccesHandler(config),
-    (err) => requestErrorHandler(err)
+    (err) => requestErrorHandler(err),
 );
 axiosInstance.interceptors.response.use(
     (response) => {
         console.log(response.data);
         return response.data;
     },
-    (err) => responseErrorHandler(err)
+    (err) => responseErrorHandler(err),
 );
 
 // 공통 get 요청
 export const getAPI = ({ endPoint, data, axiosOption }) => {
     return axiosInstance.get(
         data ? generateQueryEndPoint(endPoint, data) : endPoint,
-        axiosOption
+        axiosOption,
     );
 };
 
@@ -87,6 +87,6 @@ export const deleteAPI = ({ endPoint, data, axiosOption }) => {
 export const getPotalAPI = ({ endPoint, data, axiosOption }) => {
     return axiosPotalInstance.get(
         data ? generateQueryEndPoint(endPoint, data) : endPoint,
-        axiosOption
+        axiosOption,
     );
 };
