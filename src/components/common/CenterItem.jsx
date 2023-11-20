@@ -1,31 +1,37 @@
 import PropTypes from "prop-types";
-import Button from "../common/Button";
+import Button from "./Button";
 import { useDeleteCenter, usePostCenter } from "../../hooks/queries/centerAPI";
 import { useMemberStore } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 
-const Center = ({ center }) => {
+const CenterItem = ({ center }) => {
     const { mutate: postMutate } = usePostCenter();
     const { mutate: deleteMutate } = useDeleteCenter();
     const isSignIn = useMemberStore((state) => state.isSignIn);
     const navigater = useNavigate();
 
-    const onHandleClickSaveCenter = () => {
+    const handleSaveCenter = () => {
+        postMutate({
+            id: center.id,
+            address: center.address,
+            centerName: center.centerName,
+            updatedAt: center.updatedAt,
+        });
+    };
+
+    const handleDeleteCenter = () => {
+        deleteMutate(center.id);
+    };
+
+    const handleClick = () => {
         if (isSignIn) {
-            postMutate({
-                id: center.id,
-                address: center.address,
-                centerName: center.centerName,
-                updatedAt: center.updatedAt,
-            });
+            location.pathname === "/"
+                ? handleSaveCenter()
+                : handleDeleteCenter();
         } else {
             alert("로그인이 필요한 기능입니다.");
             navigater("/sign");
         }
-    };
-
-    const onHandleClickDeleteCenter = () => {
-        deleteMutate(center.id);
     };
 
     return (
@@ -35,21 +41,17 @@ const Center = ({ center }) => {
                 <p className="text-sm">{center.address}</p>
                 <span className="text-xs">Last update: {center.updatedAt}</span>
             </div>
-            {location.pathname === "/" ? (
-                <Button text={"저장"} clickEvent={onHandleClickSaveCenter} />
-            ) : (
-                <Button
-                    text={"삭제"}
-                    clickEvent={onHandleClickDeleteCenter}
-                    color={"red"}
-                />
-            )}
+            <Button
+                text={location.pathname === "/" ? "저장" : "삭제"}
+                clickEvent={handleClick}
+                color={location.pathname === "/" ? undefined : "red"}
+            />
         </article>
     );
 };
 
-Center.propTypes = {
+CenterItem.propTypes = {
     center: PropTypes.object.isRequired,
 };
 
-export default Center;
+export default CenterItem;
