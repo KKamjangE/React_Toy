@@ -3,6 +3,11 @@ import { toast } from "react-toastify";
 
 const useApiError = () => {
     const handleError = useCallback((error) => {
+        if (error.response === undefined) {
+            handlers.default(error.message);
+            return;
+        }
+
         const httpStatus = error.response.status;
         const serviceCode = error.response.data.code;
         const httpMessage = error.response.data.message;
@@ -24,7 +29,7 @@ const useApiError = () => {
 };
 
 const defaultHandler = (httpMessage) => {
-    alert(httpMessage);
+    toast.error(httpMessage);
 };
 
 const handler409 = () => {
