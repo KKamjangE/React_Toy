@@ -12,8 +12,8 @@ export const useSearchStateStore = create(
         {
             name: "search-storage",
             storage: createJSONStorage(() => localStorage),
-        }
-    )
+        },
+    ),
 );
 
 export const useSignStore = create(
@@ -28,8 +28,8 @@ export const useSignStore = create(
         {
             name: "sign-storage",
             storage: createJSONStorage(() => localStorage),
-        }
-    )
+        },
+    ),
 );
 
 export const useMemberStore = create(
@@ -51,6 +51,6 @@ export const useMemberStore = create(
         {
             name: "member-storage",
             storage: createJSONStorage(() => localStorage),
-        }
-    )
+        },
+    ),
 );
