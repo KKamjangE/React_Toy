@@ -3,12 +3,12 @@ import CenterItem from "../common/CenterItem";
 
 const SearchResult = () => {
     const { data } = useGetSearchCenters();
+
     return (
         <>
-            {data &&
-                data.data.data.map((center) => (
-                    <CenterItem key={center.id} center={center} />
-                ))}
+            {data.data.data.map((center) => (
+                <CenterItem key={center.id} center={center} />
+            ))}
         </>
     );
 };

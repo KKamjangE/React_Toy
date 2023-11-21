@@ -1,14 +1,15 @@
-import { useGetSearchCenters } from "../../hooks/queries/centerAPI";
+import { useQueryClient } from "@tanstack/react-query";
 import { useSearchStateStore } from "../../store/store";
 import Button from "../common/Button";
+import { queryKeys } from "../../contents/queryKeys";
 
 const SearchForm = () => {
     const { page, perPage, setPage, setPerPage } = useSearchStateStore();
 
-    const { refetch } = useGetSearchCenters(page, perPage);
+    const queryClient = useQueryClient();
 
-    const onHandleClickGetCenters = () => {
-        refetch();
+    const handleSearch = () => {
+        queryClient.fetchQuery({ queryKey: [queryKeys.getSearchCenters] });
     };
 
     return (
@@ -39,7 +40,7 @@ const SearchForm = () => {
                     />
                 </div>
             </div>
-            <Button text={"조회"} clickEvent={onHandleClickGetCenters} />
+            <Button text={"조회"} clickEvent={handleSearch} />
         </div>
     );
 };
