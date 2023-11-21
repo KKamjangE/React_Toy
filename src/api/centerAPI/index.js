@@ -1,10 +1,11 @@
 import { API_PATH } from "../api";
 import { deleteAPI, getAPI, getPotalAPI, postAPI } from "../axios";
 
-const getSearchCenters = (page, perPage) =>
-    getPotalAPI({
+const getSearchCenters = (page, perPage) => {
+    return getPotalAPI({
         endPoint: API_PATH.GET_SEARCH_CENTERS(page, perPage),
     });
+};
 
 const postCenter = (data) => {
     return postAPI({ endPoint: API_PATH.POST_CENTER, data });
