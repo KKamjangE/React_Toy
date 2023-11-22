@@ -2,6 +2,7 @@ import {
     useQueryClient,
     useMutation,
     useSuspenseQuery,
+    useQuery,
 } from "@tanstack/react-query";
 import centerAPI from "../../api/centerAPI";
 import { queryKeys } from "../../contents/queryKeys";
@@ -24,13 +25,18 @@ export const useGetSearchCenters = () => {
 };
 
 export const useGetCenters = () => {
-    const { data } = useSuspenseQuery({
+    const { data, isPending, isError, error, refetch } = useQuery({
         queryKey: [queryKeys.getCenters],
         queryFn: () => centerAPI.getCenters(),
+        throwOnError: false,
     });
 
     return {
         data,
+        isPending,
+        isError,
+        error,
+        refetch,
     };
 };
 
