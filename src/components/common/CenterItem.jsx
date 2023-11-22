@@ -16,6 +16,9 @@ const CenterItem = ({ center }) => {
             address: center.address,
             centerName: center.centerName,
             updatedAt: center.updatedAt,
+            lat: center.lat,
+            lng: center.lng,
+            phoneNumber: center.phoneNumber,
         });
     };
 
