@@ -12,8 +12,6 @@ const Header = () => {
 
     const { pathname } = useLocation();
 
-    console.log(pathname);
-
     const onHandleClickSignOut = () => {
         clearMember();
         navigater(pathnames.sign);
