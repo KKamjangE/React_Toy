@@ -8,7 +8,7 @@ const Button = ({ text, clickEvent, color, type }) => {
 
     return (
         <button
-            className={`${classProps[color]} rounded px-3 py-1 text-white transition`}
+            className={`${classProps[color]} rounded px-3 py-1 text-white transition whitespace-nowrap`}
             onClick={clickEvent}
             type={type}
         >
