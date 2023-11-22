@@ -4,7 +4,7 @@ import Button from "./Button";
 const Error = ({ error, retry }) => {
     console.log(error);
     return (
-        <div className="flex gap-5 justify-between items-center bg-white px-12 py-5 shadow-lg">
+        <div className="flex gap-5 justify-between items-center bg-gray-700 px-12 py-5 shadow-xl shadow-slate-950 rounded">
             <span>{error.message}...</span>
             <Button text={"재시도"} color={"red"} clickEvent={retry} />
         </div>
