@@ -35,7 +35,7 @@ const CenterItem = ({ center }) => {
     };
 
     return (
-        <article className="flex items-end justify-between gap-4 bg-white px-12 py-5 mt-5 shadow-lg rounded">
+        <article className="flex items-end justify-between gap-4 bg-gray-700 px-12 py-5 mt-5 shadow-lg rounded">
             <div>
                 <h3>{center.centerName}</h3>
                 <p className="text-sm">{center.address}</p>

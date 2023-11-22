@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 html {
-    background-color: rgb(241 245 249);
+    background-color: rgb(26, 32, 44);
     font-size: 20px;
     font-family: "Noto Sans KR", sans-serif;
+    color: white;
+}
+
+input {
+    color: black;
 }

@@ -6,15 +6,9 @@ const Button = ({ text, clickEvent, color, type }) => {
         red: "bg-red-600 hover:bg-red-700",
     };
 
-    const getClass = (color) => {
-        return classProps[color];
-    };
-
     return (
         <button
-            className={`${getClass(
-                color,
-            )} rounded px-3 py-1 text-white transition`}
+            className={`${classProps[color]} rounded px-3 py-1 text-white transition`}
             onClick={clickEvent}
             type={type}
         >

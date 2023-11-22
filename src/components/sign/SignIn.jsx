@@ -27,7 +27,7 @@ const SignIn = ({ setIsSignInView }) => {
 
     return (
         <form
-            className="flex flex-col items-center gap-10 bg-white py-10 rounded"
+            className="flex flex-col items-center gap-10 bg-gray-700 py-10 rounded"
             onSubmit={handleSubmit(onHandleSubmitSign)}
         >
             <div className="flex flex-col gap-5">
