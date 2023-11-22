@@ -13,7 +13,7 @@ const SearchForm = () => {
     };
 
     return (
-        <div className="flex justify-between items-end gap-5 rounded bg-gray-700 shadow-lg px-12 py-5">
+        <div className="flex justify-between items-end gap-5 rounded bg-gray-700 shadow-lg shadow-slate-950 px-12 py-5">
             <div className="flex gap-5">
                 <div className="flex flex-col items-start gap-2">
                     <label htmlFor="page" className="text-xs">

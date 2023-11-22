@@ -20,7 +20,7 @@ const Header = () => {
     };
 
     return (
-        <div className="flex justify-center items-center gap-5 p-4 shadow-lg top-0">
+        <div className="flex justify-center items-center gap-5 p-4 shadow-xl shadow-slate-950 top-0">
             <h1 className="text-white">Toy Project</h1>
             <Link
                 to={pathnames.home}
