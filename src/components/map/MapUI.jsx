@@ -5,13 +5,11 @@ import {
     useJsApiLoader,
 } from "@react-google-maps/api";
 import { useGetCenters } from "../../hooks/queries/centerAPI";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import useCalculateCoordinates from "../../hooks/map/useCalculateCoordinates";
 
 const MapUI = () => {
     const { data } = useGetCenters();
-    console.log("Map UI 렌더링");
-
     // Google 지도 API 및 관련 리소스 비동기적 로드
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
@@ -20,44 +18,28 @@ const MapUI = () => {
 
     // 지도 객체 상태관리
     const [map, setMap] = useState(null);
-    const { center } = useCalculateCoordinates(data.data); // 중심 좌표 계산
+    const { center: initCenter } = useCalculateCoordinates(data.data); // 중심 좌표 계산
     const [selectedMarker, setSelectedMarker] = useState(null);
+    const [center, setCenter] = useState(initCenter);
 
     // 지도가 로드될 때 호출
-    const onLoad = (map) => {
-        const bounds = new window.google.maps.LatLngBounds();
-        data.data.forEach((centerItem) =>
-            bounds.extend({ lat: centerItem.lat, lng: centerItem.lng }),
-        );
+    const onLoad = useCallback(
+        (map) => {
+            const bounds = new window.google.maps.LatLngBounds();
+            data.data.forEach((centerItem) =>
+                bounds.extend({ lat: centerItem.lat, lng: centerItem.lng }),
+            );
 
-        map.fitBounds(bounds);
-        console.log("onLoad 실행");
-        console.log(map);
-        setMap(map);
-    };
+            map.fitBounds(bounds);
+            setMap(map);
+        },
+        [data],
+    );
 
     // 지도가 언마운트될 때 호출
-    const onUnmount = () => {
+    const onUnmount = useCallback(() => {
         setMap(null);
-    };
-
-    const handleMarkerClick = (e) => {
-        map.panTo(e.latLng);
-        setSelectedMarker(center);
-    };
-    useEffect(() => {
-        console.log(isLoaded);
-    }, [isLoaded]);
-
-    useEffect(() => {
-        console.log("map 상태 변경");
-        console.log(map);
-    }, [map]);
-
-    const test = (e) => {
-        console.log(e);
-        console.log(map);
-    };
+    }, []);
 
     return (
         <>
@@ -68,7 +50,10 @@ const MapUI = () => {
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                     zoom={10}
+                    onClick={() => setSelectedMarker(null)}
                     options={{
+                        maxZoom: 18,
+                        minZoom: 4,
                         streetViewControl: false,
                         mapTypeControl: false,
                         styles: [
@@ -85,30 +70,39 @@ const MapUI = () => {
                         ],
                     }}
                 >
-                    {data.data.map((center) => (
-                        <MarkerF
-                            key={center.id}
-                            position={{ lat: center.lat, lng: center.lng }}
-                            title={center.centerName}
-                            onClick={test}
-                        />
-                    ))}
-                    {selectedMarker && (
-                        <InfoWindowF
-                            position={{
-                                lat: selectedMarker.lat,
-                                lng: selectedMarker.lng,
-                            }}
-                            onCloseClick={() => setSelectedMarker(null)}
-                            options={{}}
-                        >
-                            <div>
-                                <h3 className="text-black">
-                                    {selectedMarker.centerName}
-                                </h3>
-                            </div>
-                        </InfoWindowF>
-                    )}
+                    {map &&
+                        data.data.map((center) => (
+                            <MarkerF
+                                key={center.id}
+                                position={{ lat: center.lat, lng: center.lng }}
+                                title={center.centerName}
+                                onClick={() => {
+                                    setSelectedMarker(center.id);
+                                    setCenter({
+                                        lat: center.lat,
+                                        lng: center.lng,
+                                    });
+                                }}
+                            >
+                                {selectedMarker === center.id && (
+                                    <InfoWindowF
+                                        onCloseClick={() =>
+                                            setSelectedMarker(null)
+                                        }
+                                        options={{}}
+                                    >
+                                        <div className="text-black flex flex-col gap-2 items-center">
+                                            <h3>{center.centerName}</h3>
+                                            <p>Call: {center.phoneNumber}</p>
+                                            <div className="flex justify-center gap-2">
+                                                <span>{center.lat}</span>
+                                                <span>{center.lng}</span>
+                                            </div>
+                                        </div>
+                                    </InfoWindowF>
+                                )}
+                            </MarkerF>
+                        ))}
                 </GoogleMap>
             )}
         </>
