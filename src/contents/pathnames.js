@@ -3,4 +3,5 @@ export const pathnames = {
     list: "/list",
     map: "/map",
     sign: "/sign",
+    chart: "/chart",
 };

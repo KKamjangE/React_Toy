@@ -50,6 +50,16 @@ const Header = () => {
             >
                 Map
             </Link>
+            <Link
+                to={pathnames.chart}
+                className={`text-sm ${
+                    pathname === pathnames.chart
+                        ? "text-teal-500"
+                        : "text-teal-700"
+                } hover:text-teal-500 transition`}
+            >
+                Chart
+            </Link>
             {memberInfo.memberName ? (
                 <button
                     className="text-sm text-teal-500 font-bold"

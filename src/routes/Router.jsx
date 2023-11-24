@@ -7,6 +7,8 @@ import List from "./../pages/List";
 import PublicRoute from "./PublicRoute";
 import Sign from "./../pages/Sign";
 import Map from "../pages/Map";
+import { pathnames } from "../contents/pathnames";
+import Chart from "../pages/Chart";
 
 const Router = () => {
     return (
@@ -16,11 +18,12 @@ const Router = () => {
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route element={<PrivateRoute />}>
-                        <Route path="/list" element={<List />} />
-                        <Route path="/map" element={<Map />} />
+                        <Route path={pathnames.list} element={<List />} />
+                        <Route path={pathnames.map} element={<Map />} />
+                        <Route path={pathnames.chart} element={<Chart />} />
                     </Route>
                     <Route element={<PublicRoute />}>
-                        <Route path="/sign" element={<Sign />} />
+                        <Route path={pathnames.sign} element={<Sign />} />
                     </Route>
                 </Route>
             </Routes>
