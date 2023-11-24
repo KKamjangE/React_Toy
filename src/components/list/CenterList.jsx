@@ -6,9 +6,15 @@ const CenterList = () => {
 
     return (
         <>
-            {data.data.map((center) => (
-                <CenterItem key={center.id} center={center} />
-            ))}
+            {data.data.length > 0 ? (
+                data.data.map((center) => (
+                    <CenterItem key={center.id} center={center} />
+                ))
+            ) : (
+                <div className="flex justify-center py-10">
+                    <p>저장된 데이터가 없습니다.</p>
+                </div>
+            )}
         </>
     );
 };
