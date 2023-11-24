@@ -1,13 +1,13 @@
 import { useGoogleMap } from "@react-google-maps/api";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import Button from "./../common/Button";
 
 const MarkerInfoUI = ({ item }) => {
     const map = useGoogleMap();
 
-    useEffect(() => {
-        console.log(map);
-    }, [map]);
+    const handleZoom = () => {
+        map.setZoom(18);
+    };
 
     return (
         <div className="text-black flex flex-col gap-2 items-center">
@@ -17,13 +17,7 @@ const MarkerInfoUI = ({ item }) => {
                 <span>{item.lat}</span>
                 <span>{item.lng}</span>
             </div>
-            <button
-                onClick={() => {
-                    map.setZoom(20);
-                }}
-            >
-                지도 줌 변경하기
-            </button>
+            <Button text="확대" clickEvent={handleZoom} />
         </div>
     );
 };
