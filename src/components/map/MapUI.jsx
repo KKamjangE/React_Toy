@@ -3,13 +3,16 @@ import {
     InfoWindowF,
     MarkerF,
     useJsApiLoader,
+    MarkerClustererF,
 } from "@react-google-maps/api";
 import { useGetCenters } from "../../hooks/queries/centerAPI";
 import { useCallback, useState } from "react";
 import useCalculateCoordinates from "../../hooks/map/useCalculateCoordinates";
+import MarkerInfoUI from "./MarkerInfoUI";
 
 const MapUI = () => {
     const { data } = useGetCenters();
+
     // Google 지도 API 및 관련 리소스 비동기적 로드
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
@@ -19,8 +22,8 @@ const MapUI = () => {
     // 지도 객체 상태관리
     const [map, setMap] = useState(null);
     const { center: initCenter } = useCalculateCoordinates(data.data); // 중심 좌표 계산
-    const [selectedMarker, setSelectedMarker] = useState(null);
-    const [center, setCenter] = useState(initCenter);
+    const [selectedMarkerId, setSelectedMarkerId] = useState(null); // 마커 선택
+    const [center, setCenter] = useState(initCenter); // 지도 중앙값
 
     // 지도가 로드될 때 호출
     const onLoad = useCallback(
@@ -50,7 +53,7 @@ const MapUI = () => {
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                     zoom={10}
-                    onClick={() => setSelectedMarker(null)}
+                    onClick={() => setSelectedMarkerId(null)}
                     options={{
                         maxZoom: 18,
                         minZoom: 4,
@@ -70,39 +73,40 @@ const MapUI = () => {
                         ],
                     }}
                 >
-                    {map &&
-                        data.data.map((center) => (
-                            <MarkerF
-                                key={center.id}
-                                position={{ lat: center.lat, lng: center.lng }}
-                                title={center.centerName}
-                                onClick={() => {
-                                    setSelectedMarker(center.id);
-                                    setCenter({
+                    <MarkerClustererF averageCenter={true}>
+                        {(clusterer) =>
+                            map &&
+                            data.data.map((center) => (
+                                <MarkerF
+                                    key={center.id}
+                                    position={{
                                         lat: center.lat,
                                         lng: center.lng,
-                                    });
-                                }}
-                            >
-                                {selectedMarker === center.id && (
-                                    <InfoWindowF
-                                        onCloseClick={() =>
-                                            setSelectedMarker(null)
-                                        }
-                                        options={{}}
-                                    >
-                                        <div className="text-black flex flex-col gap-2 items-center">
-                                            <h3>{center.centerName}</h3>
-                                            <p>Call: {center.phoneNumber}</p>
-                                            <div className="flex justify-center gap-2">
-                                                <span>{center.lat}</span>
-                                                <span>{center.lng}</span>
-                                            </div>
-                                        </div>
-                                    </InfoWindowF>
-                                )}
-                            </MarkerF>
-                        ))}
+                                    }}
+                                    title={center.centerName}
+                                    clusterer={clusterer}
+                                    onClick={() => {
+                                        setSelectedMarkerId(center.id);
+                                        setCenter({
+                                            lat: center.lat,
+                                            lng: center.lng,
+                                        });
+                                    }}
+                                >
+                                    {selectedMarkerId === center.id && (
+                                        <InfoWindowF
+                                            onCloseClick={() =>
+                                                setSelectedMarkerId(null)
+                                            }
+                                            options={{}}
+                                        >
+                                            <MarkerInfoUI item={center} />
+                                        </InfoWindowF>
+                                    )}
+                                </MarkerF>
+                            ))
+                        }
+                    </MarkerClustererF>
                 </GoogleMap>
             )}
         </>
