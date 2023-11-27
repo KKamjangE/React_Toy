@@ -7,17 +7,15 @@ import Loading from "./../components/common/Loading";
 
 const Chart = () => {
     return (
-        <section className="w-1/3 h-96 rounded bg-gray-700 px-12 py-5 shadow-lg shadow-slate-950">
-            <QueryErrorResetBoundary>
-                {({ reset }) => (
-                    <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
-                        <Suspense fallback={<Loading />}>
-                            <ChartUI />
-                        </Suspense>
-                    </ErrorBoundary>
-                )}
-            </QueryErrorResetBoundary>
-        </section>
+        <QueryErrorResetBoundary>
+            {({ reset }) => (
+                <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
+                    <Suspense fallback={<Loading />}>
+                        <ChartUI />
+                    </Suspense>
+                </ErrorBoundary>
+            )}
+        </QueryErrorResetBoundary>
     );
 };
 

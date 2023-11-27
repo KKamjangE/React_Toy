@@ -16,6 +16,8 @@ export const useGetSearchCenters = () => {
     const { data } = useSuspenseQuery({
         queryKey: [queryKeys.getSearchCenters],
         queryFn: () => centerAPI.getSearchCenters(page, perPage),
+        staleTime: 1000 * 60 * 1,
+        gcTime: 1000 * 60 * 3,
     });
 
     return {
