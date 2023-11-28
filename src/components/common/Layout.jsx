@@ -1,11 +1,20 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
     return (
-        <Box justifyContent="center" display="flex" marginBottom={20}>
-            <Outlet />
-        </Box>
+        <Container maxWidth="md">
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: 8,
+                    paddingBottom: 20,
+                }}
+            >
+                <Outlet />
+            </Box>
+        </Container>
     );
 };
 

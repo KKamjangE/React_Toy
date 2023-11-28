@@ -1,6 +1,8 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useMemberStore } from "../../store/store";
 import { pathnames } from "../../contents/pathnames";
+import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
+import Link from "@mui/material/Link";
 
 const Header = () => {
     const { memberInfo, clearMember } = useMemberStore((state) => ({
@@ -10,77 +12,42 @@ const Header = () => {
 
     const navigater = useNavigate();
 
-    const { pathname } = useLocation();
-
     const onHandleClickSignOut = () => {
         clearMember();
         navigater(pathnames.sign);
     };
-
     return (
-        <div className="flex justify-center items-center gap-5 p-4 shadow-xl shadow-slate-950 top-0">
-            <h1 className="text-white">Toy Project</h1>
-            <Link
-                to={pathnames.home}
-                className={`text-sm ${
-                    pathname === pathnames.home
-                        ? "text-teal-500"
-                        : "text-teal-700"
-                } hover:text-teal-500 transition`}
-            >
-                Home
-            </Link>
-            <Link
-                to={pathnames.list}
-                className={`text-sm ${
-                    pathname === pathnames.list
-                        ? "text-teal-500"
-                        : "text-teal-700"
-                } hover:text-teal-500 transition`}
-            >
-                List
-            </Link>
-            <Link
-                to={pathnames.map}
-                className={`text-sm ${
-                    pathname === pathnames.map
-                        ? "text-teal-500"
-                        : "text-teal-700"
-                } hover:text-teal-500 transition`}
-            >
-                Map
-            </Link>
-            <Link
-                to={pathnames.chart}
-                className={`text-sm ${
-                    pathname === pathnames.chart
-                        ? "text-teal-500"
-                        : "text-teal-700"
-                } hover:text-teal-500 transition`}
-            >
-                Chart
-            </Link>
-            {memberInfo.memberName ? (
-                <button
-                    className="text-sm text-teal-500 font-bold"
-                    type="text"
-                    onClick={onHandleClickSignOut}
+        <AppBar position={"static"}>
+            <Container maxWidth={"md"}>
+                <Toolbar
+                    sx={{ justifyContent: "space-between" }}
+                    disableGutters={true}
                 >
-                    {memberInfo.memberName}
-                </button>
-            ) : (
-                <Link
-                    to={pathnames.sign}
-                    className={`text-sm ${
-                        pathname === pathnames.sign
-                            ? "text-teal-500"
-                            : "text-teal-700"
-                    } hover:text-teal-500 transition`}
-                >
-                    Sign
-                </Link>
-            )}
-        </div>
+                    <Typography variant="h5">Toy Project</Typography>
+                    <Button component={RouterLink} to={pathnames.home}>
+                        Home
+                    </Button>
+                    <Button component={RouterLink} to={pathnames.list}>
+                        List
+                    </Button>
+                    <Button component={RouterLink} to={pathnames.map}>
+                        Map
+                    </Button>
+                    <Button component={RouterLink} to={pathnames.chart}>
+                        Chart
+                    </Button>
+                    {memberInfo.memberName ? (
+                        <Button onClick={onHandleClickSignOut}>
+                            {memberInfo.memberName}
+                        </Button>
+                    ) : (
+                        <Button component={RouterLink} to={pathnames.sign}>
+                            Sign
+                        </Button>
+                    )}
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 };
 
