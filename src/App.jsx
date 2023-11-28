@@ -8,6 +8,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import useApiError from "./hooks/useApiError";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "./Theme";
 
 function App() {
     const { handleError } = useApiError();
@@ -27,15 +29,18 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Router />
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                closeOnClick
-                pauseOnHover
-                theme="light"
-                limit={3}
-            />
+            <ThemeProvider theme={theme}>
+                <Router />
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    closeOnClick
+                    pauseOnHover
+                    theme="light"
+                    limit={3}
+                />
+                <CssBaseline />
+            </ThemeProvider>
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     );
