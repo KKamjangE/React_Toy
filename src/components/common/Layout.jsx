@@ -1,10 +1,11 @@
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
     return (
-        <div className="flex justify-center my-10">
+        <Box justifyContent="center" display="flex" marginBottom={20}>
             <Outlet />
-        </div>
+        </Box>
     );
 };
 
