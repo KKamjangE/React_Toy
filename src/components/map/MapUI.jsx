@@ -1,14 +1,12 @@
 import {
     GoogleMap,
-    InfoWindowF,
-    MarkerF,
     useJsApiLoader,
     MarkerClustererF,
 } from "@react-google-maps/api";
 import { useGetCenters } from "../../hooks/queries/centerAPI";
 import { useCallback, useState } from "react";
 import useCalculateCoordinates from "../../hooks/map/useCalculateCoordinates";
-import MarkerInfoUI from "./MarkerInfoUI";
+import MarkerUI from "./MarkerUI";
 
 const MapUI = () => {
     const { data } = useGetCenters();
@@ -21,9 +19,8 @@ const MapUI = () => {
 
     // 지도 객체 상태관리
     const [map, setMap] = useState(null);
-    const { center: initCenter } = useCalculateCoordinates(data.data); // 중심 좌표 계산
+    const { centerCoord } = useCalculateCoordinates(data.data); // 중심 좌표 계산
     const [selectedMarkerId, setSelectedMarkerId] = useState(null); // 마커 선택
-    const [center, setCenter] = useState(initCenter); // 지도 중앙값
 
     // 지도가 로드될 때 호출
     const onLoad = useCallback(
@@ -49,7 +46,7 @@ const MapUI = () => {
             {isLoaded && (
                 <GoogleMap
                     mapContainerStyle={{ width: "1200px", height: "650px" }}
-                    center={center}
+                    center={centerCoord}
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                     zoom={10}
@@ -75,35 +72,14 @@ const MapUI = () => {
                 >
                     <MarkerClustererF averageCenter={true}>
                         {(clusterer) =>
-                            map &&
-                            data.data.map((center) => (
-                                <MarkerF
-                                    key={center.id}
-                                    position={{
-                                        lat: center.lat,
-                                        lng: center.lng,
-                                    }}
-                                    title={center.centerName}
+                            data.data.map((centerItem) => (
+                                <MarkerUI
+                                    key={centerItem.id}
+                                    center={centerItem}
                                     clusterer={clusterer}
-                                    onClick={() => {
-                                        setSelectedMarkerId(center.id);
-                                        setCenter({
-                                            lat: center.lat,
-                                            lng: center.lng,
-                                        });
-                                    }}
-                                >
-                                    {selectedMarkerId === center.id && (
-                                        <InfoWindowF
-                                            onCloseClick={() =>
-                                                setSelectedMarkerId(null)
-                                            }
-                                            options={{}}
-                                        >
-                                            <MarkerInfoUI item={center} />
-                                        </InfoWindowF>
-                                    )}
-                                </MarkerF>
+                                    selectedMarkerId={selectedMarkerId}
+                                    setSelectedMarkerId={setSelectedMarkerId}
+                                />
                             ))
                         }
                     </MarkerClustererF>
