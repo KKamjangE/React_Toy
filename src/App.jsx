@@ -31,16 +31,16 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={theme}>
                 <Router />
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    closeOnClick
-                    pauseOnHover
-                    theme="light"
-                    limit={3}
-                />
                 <CssBaseline />
             </ThemeProvider>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                closeOnClick
+                pauseOnHover
+                theme="light"
+                limit={3}
+            />
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     );
