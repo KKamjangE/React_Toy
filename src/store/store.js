@@ -19,14 +19,14 @@ export const useSearchStateStore = create(
 export const useSignStore = create(
     persist(
         (set) => ({
-            isSignInView: true,
-            setIsSignInView: () =>
+            isSignInTab: true,
+            setIsSignInTab: () =>
                 set((state) => ({
-                    isSignInView: !state.isSignInView,
+                    isSignInTab: !state.isSignInTab,
                 })),
         }),
         {
-            name: "sign-storage",
+            name: "isSignInTab-storage",
             storage: createJSONStorage(() => localStorage),
         },
     ),
