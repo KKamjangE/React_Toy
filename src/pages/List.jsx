@@ -7,17 +7,15 @@ import Loading from "../components/common/Loading";
 
 const List = () => {
     return (
-        <section className="w-1/3">
-            <QueryErrorResetBoundary>
-                {({ reset }) => (
-                    <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
-                        <Suspense fallback={<Loading />}>
-                            <CenterList />
-                        </Suspense>
-                    </ErrorBoundary>
-                )}
-            </QueryErrorResetBoundary>
-        </section>
+        <QueryErrorResetBoundary>
+            {({ reset }) => (
+                <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
+                    <Suspense fallback={<Loading />}>
+                        <CenterList />
+                    </Suspense>
+                </ErrorBoundary>
+            )}
+        </QueryErrorResetBoundary>
     );
 };
 

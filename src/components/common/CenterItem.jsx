@@ -35,7 +35,7 @@ const CenterItem = ({ center, clickEvent, btnName }) => {
         >
             <CardContent>
                 <Typography variant="h6">{center.centerName}</Typography>
-                <Typography variant="body1">{center.address}</Typography>
+                <Typography>{center.address}</Typography>
                 <Typography variant="caption">
                     Last update: {center.updatedAt}
                 </Typography>
