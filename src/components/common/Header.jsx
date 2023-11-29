@@ -2,7 +2,6 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useMemberStore } from "../../store/store";
 import { pathnames } from "../../contents/pathnames";
 import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
-import Link from "@mui/material/Link";
 
 const Header = () => {
     const { memberInfo, clearMember } = useMemberStore((state) => ({
