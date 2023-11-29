@@ -28,7 +28,12 @@ const SearchForm = () => {
         <Card elevation={6}>
             <CardHeader title="코로나 예방접종센터 검색" />
             <CardContent
-                sx={{ display: "flex", justifyContent: "space-around" }}
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 5,
+                }}
             >
                 <TextField
                     id="page"
@@ -50,12 +55,12 @@ const SearchForm = () => {
                     size="small"
                     autoComplete="off"
                 />
+                <CardActions>
+                    <Button variant="contained" onClick={handleSearch}>
+                        검색
+                    </Button>
+                </CardActions>
             </CardContent>
-            <CardActions sx={{ justifyContent: "end" }}>
-                <Button variant="contained" onClick={handleSearch}>
-                    검색
-                </Button>
-            </CardActions>
         </Card>
     );
 };

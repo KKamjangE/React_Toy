@@ -3,11 +3,9 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
             <Box
                 sx={{
-                    display: "flex",
-                    justifyContent: "center",
                     paddingTop: 8,
                     paddingBottom: 20,
                 }}

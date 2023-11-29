@@ -8,7 +8,7 @@ import Loading from "../components/common/Loading";
 
 const Home = () => {
     return (
-        <section className="w-1/3">
+        <>
             <SearchForm />
             <QueryErrorResetBoundary>
                 {({ reset }) => (
@@ -19,7 +19,7 @@ const Home = () => {
                     </ErrorBoundary>
                 )}
             </QueryErrorResetBoundary>
-        </section>
+        </>
     );
 };
 
