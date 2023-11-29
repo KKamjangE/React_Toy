@@ -3,17 +3,11 @@ import SignUp from "../components/sign/SignUp";
 import { useSignStore } from "../store/store";
 
 const Sign = () => {
-    const { isSignInView, setIsSignInView } = useSignStore();
+    const { isSignInTab } = useSignStore((state) => ({
+        isSignInTab: state.isSignInTab,
+    }));
 
-    return (
-        <section className="w-1/3">
-            {isSignInView ? (
-                <SignIn setIsSignInView={setIsSignInView} />
-            ) : (
-                <SignUp setIsSignInView={setIsSignInView} />
-            )}
-        </section>
-    );
+    return <>{isSignInTab ? <SignIn /> : <SignUp />}</>;
 };
 
 export default Sign;
