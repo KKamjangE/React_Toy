@@ -9,7 +9,7 @@ import {
 import { useSignStore } from "../../store/store";
 import { useFormik } from "formik";
 import { signInSchema } from "../../contents/validationSchema";
-import SignTextField from "./SignTextField";
+import Input from "./../common/Input";
 import Send from "@mui/icons-material/Send";
 import { LoadingButton } from "@mui/lab";
 
@@ -44,8 +44,8 @@ const SignIn = () => {
                     }}
                 >
                     <CardHeader title="Sign In" />
-                    <SignTextField label="ID" name="userId" formik={formik} />
-                    <SignTextField
+                    <Input label="ID" name="userId" formik={formik} />
+                    <Input
                         label="Password"
                         name="password"
                         formik={formik}

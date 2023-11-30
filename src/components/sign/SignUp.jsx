@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../contents/validationSchema";
-import SignTextField from "./SignTextField";
 import { Send } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
+import Input from "./../common/Input";
 
 const SignUp = () => {
     const { setIsSignInTab } = useSignStore((state) => ({
@@ -47,15 +47,15 @@ const SignUp = () => {
                     }}
                 >
                     <CardHeader title="Sign Up" />
-                    <SignTextField label="Name" name="name" formik={formik} />
-                    <SignTextField label="ID" name="userId" formik={formik} />
-                    <SignTextField
+                    <Input label="Name" name="name" formik={formik} />
+                    <Input label="ID" name="userId" formik={formik} />
+                    <Input
                         label="Password"
                         name="password"
                         formik={formik}
                         type="password"
                     />
-                    <SignTextField
+                    <Input
                         label="Confirm Password"
                         name="confirmPassword"
                         formik={formik}
