@@ -1,14 +1,26 @@
 import PropTypes from "prop-types";
-import { Button } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 
 const FallbackUI = ({ error, resetErrorBoundary }) => {
     return (
-        <div className="flex gap-5 justify-between items-end bg-gray-700 px-12 py-5 shadow-xl shadow-slate-950">
-            <span>{error.message}...</span>
-            <Button onClick={resetErrorBoundary} color="error">
+        <Paper
+            elevation={6}
+            sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                paddingY: 5,
+            }}
+        >
+            <Typography variant="h6">{error.message}</Typography>
+            <Button
+                variant="contained"
+                onClick={resetErrorBoundary}
+                color="error"
+            >
                 Try again
             </Button>
-        </div>
+        </Paper>
     );
 };
 
