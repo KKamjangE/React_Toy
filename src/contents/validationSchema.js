@@ -10,7 +10,7 @@ const errorMessages = {
 
 const regexEngNum = /^[A-z0-9]+$/;
 
-export const SignInSchema = yup.object({
+export const signInSchema = yup.object({
     userId: yup
         .string()
         .required(errorMessages.required)
@@ -25,7 +25,7 @@ export const SignInSchema = yup.object({
         .max(20, errorMessages.max(20)),
 });
 
-export const SignUpSchema = yup.object({
+export const signUpSchema = yup.object({
     name: yup
         .string()
         .required(errorMessages.required)
