@@ -10,12 +10,14 @@ import {
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../contents/validationSchema";
 import SignTextField from "./SignTextField";
+import { Send } from "@mui/icons-material";
+import { LoadingButton } from "@mui/lab";
 
 const SignUp = () => {
     const { setIsSignInTab } = useSignStore((state) => ({
         setIsSignInTab: state.setIsSignInTab,
     }));
-    const { mutate } = usePostSignUp();
+    const { mutate, isPending } = usePostSignUp();
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -60,9 +62,14 @@ const SignUp = () => {
                         type="password"
                     />
                     <CardActions sx={{ justifyContent: "space-around" }}>
-                        <Button variant="contained" type="submit">
+                        <LoadingButton
+                            loading={isPending}
+                            variant="contained"
+                            type="submit"
+                            endIcon={<Send />}
+                        >
                             submit
-                        </Button>
+                        </LoadingButton>
                         <Button variant="contained" onClick={setIsSignInTab}>
                             Sign in
                         </Button>
