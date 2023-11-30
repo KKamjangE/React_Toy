@@ -1,6 +1,6 @@
 import { useGoogleMap } from "@react-google-maps/api";
 import PropTypes from "prop-types";
-import Button from "./../common/Button";
+import { Button } from "@mui/material";
 
 const MarkerInfoUI = ({ center }) => {
     const map = useGoogleMap();
@@ -17,7 +17,7 @@ const MarkerInfoUI = ({ center }) => {
                 <span>{center.lat}</span>
                 <span>{center.lng}</span>
             </div>
-            <Button text="확대" clickEvent={handleZoom} />
+            <Button onClick={handleZoom}>확대</Button>
         </div>
     );
 };
