@@ -4,7 +4,7 @@ import SearchResult from "../components/home/SearchResult";
 import SearchForm from "./../components/home/SearchForm";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
-import Loading from "../components/common/Loading";
+import SkeletonCenterItem from "../components/skeleton/SkeletonCenterItem";
 
 const Home = () => {
     return (
@@ -13,7 +13,7 @@ const Home = () => {
             <QueryErrorResetBoundary>
                 {({ reset }) => (
                     <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
-                        <Suspense fallback={<Loading />}>
+                        <Suspense fallback={<SkeletonCenterItem />}>
                             <SearchResult />
                         </Suspense>
                     </ErrorBoundary>

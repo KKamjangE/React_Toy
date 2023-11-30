@@ -3,14 +3,14 @@ import CenterList from "../components/list/CenterList";
 import { ErrorBoundary } from "react-error-boundary";
 import { Suspense } from "react";
 import FallbackUI from "../components/common/FallbackUI";
-import Loading from "../components/common/Loading";
+import SkeletonCenterItem from "../components/skeleton/SkeletonCenterItem";
 
 const List = () => {
     return (
         <QueryErrorResetBoundary>
             {({ reset }) => (
                 <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
-                    <Suspense fallback={<Loading />}>
+                    <Suspense fallback={<SkeletonCenterItem />}>
                         <CenterList />
                     </Suspense>
                 </ErrorBoundary>
