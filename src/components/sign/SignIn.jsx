@@ -1,113 +1,65 @@
 import { usePostSignIn } from "./../../hooks/queries/signAPI";
 import {
-    Box,
     Button,
     Card,
     CardActions,
     CardContent,
     CardHeader,
-    Container,
-    TextField,
-    Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { useSignStore } from "../../store/store";
-import useValidCheck from "../../hooks/useValidCheck";
+import { useFormik } from "formik";
+import { SignInSchema } from "../../contents/validationSchema";
+import SignTextField from "./SignTextField";
 
 const SignIn = () => {
     const { setIsSignInTab } = useSignStore((state) => ({
         setIsSignInTab: state.setIsSignInTab,
     }));
     const { mutate } = usePostSignIn();
-    const [userId, setUserId] = useState("");
-    const [password, setPassword] = useState("");
-    const { checkId, checkPwd } = useValidCheck();
-    const { error: idError } = checkId(userId);
-    const { error: pwdError } = checkPwd(password);
-
-    const handleSubmitSign = () => {
-        if (idError === null && pwdError === null) {
+    const formik = useFormik({
+        initialValues: {
+            userId: "",
+            password: "",
+        },
+        validationSchema: SignInSchema,
+        onSubmit: (form) => {
             mutate({
-                userId,
-                password,
+                userId: form.userId,
+                password: form.password,
             });
-        }
-    };
+        },
+    });
 
     return (
-        <Container maxWidth="sm">
-            <Card sx={{ display: "flex", justifyContent: "center" }}>
+        <Card sx={{ display: "flex", justifyContent: "center" }}>
+            <form onSubmit={formik.handleSubmit}>
                 <CardContent
                     sx={{
                         display: "flex",
                         flexDirection: "column",
                         gap: 3,
+                        width: 300,
                     }}
                 >
-                    <CardHeader title="Sign-in" />
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 1,
-                        }}
-                    >
-                        <TextField
-                            label="ID"
-                            size="small"
-                            autoComplete="off"
-                            onChange={(e) => setUserId(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter") handleSubmitSign();
-                            }}
-                            required
-                        />
-                        {idError && (
-                            <Typography variant="caption" color={"error"}>
-                                {idError}
-                            </Typography>
-                        )}
-                    </Box>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 1,
-                        }}
-                    >
-                        <TextField
-                            label="Password"
-                            size="small"
-                            autoComplete="off"
-                            type="password"
-                            onChange={(e) => {
-                                setPassword(e.target.value);
-                            }}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter") handleSubmitSign();
-                            }}
-                            required
-                        />
-                        {pwdError && (
-                            <Typography variant="caption" color={"error"}>
-                                {pwdError}
-                            </Typography>
-                        )}
-                    </Box>
-                    <CardActions sx={{ justifyContent: "space-between" }}>
-                        <Button variant="contained" onClick={handleSubmitSign}>
+                    <CardHeader title="Sign In" />
+                    <SignTextField label="ID" name="userId" formik={formik} />
+                    <SignTextField
+                        label="Password"
+                        name="password"
+                        formik={formik}
+                        type="password"
+                    />
+                    <CardActions sx={{ justifyContent: "space-around" }}>
+                        <Button variant="contained" type="submit">
                             submit
                         </Button>
-                        <Button
-                            variant="contained"
-                            onClick={() => setIsSignInTab("in")}
-                        >
-                            Sign-up
+                        <Button variant="contained" onClick={setIsSignInTab}>
+                            Sign up
                         </Button>
                     </CardActions>
                 </CardContent>
-            </Card>
-        </Container>
+            </form>
+        </Card>
     );
 };
 

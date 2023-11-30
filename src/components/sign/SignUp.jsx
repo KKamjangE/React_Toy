@@ -1,104 +1,76 @@
-import Button from "../common/Button";
-import PropTypes from "prop-types";
-import { useForm } from "react-hook-form";
 import { usePostSignUp } from "../../hooks/queries/signAPI";
-import Input from "./Input";
+import { useSignStore } from "../../store/store";
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+} from "@mui/material";
+import { useFormik } from "formik";
+import { SignUpSchema } from "../../contents/validationSchema";
+import SignTextField from "./SignTextField";
 
-const SignUp = ({ setIsSignInView }) => {
-    const defaultValues = {
-        Name: "",
-        "User ID": "",
-        Password: "",
-        "Check Password": "",
-    };
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        watch,
-    } = useForm({ defaultValues });
-
+const SignUp = () => {
+    const { setIsSignInTab } = useSignStore((state) => ({
+        setIsSignInTab: state.setIsSignInTab,
+    }));
     const { mutate } = usePostSignUp();
-
-    const onHandleSubmitSign = (data) => {
-        mutate({
-            name: data["Name"],
-            userId: data["User ID"],
-            password: data["Password"],
-        });
-    };
-
-    const validatePassword = (value) => {
-        const password = watch("Password");
-        return value === password || "password do not match";
-    };
+    const formik = useFormik({
+        initialValues: {
+            name: "",
+            userId: "",
+            password: "",
+            confirmPassword: "",
+        },
+        validationSchema: SignUpSchema,
+        onSubmit: (form) => {
+            mutate({
+                name: form.name,
+                userId: form.userId,
+                password: form.password,
+            });
+        },
+    });
 
     return (
-        <form
-            className="flex flex-col items-center gap-10 bg-gray-700 py-10 rounded shadow-xl shadow-slate-950"
-            onSubmit={handleSubmit(onHandleSubmitSign)}
-        >
-            <div className="flex flex-col gap-5">
-                <p className="text-xl font-semibold">Sign-up</p>
-                <Input
-                    label={"Name"}
-                    register={register}
-                    options={{
-                        required: "name is required!",
-                        minLength: 3,
-                        maxLength: 10,
-                        pattern: /[A-Za-z0-9]/g,
+        <Card sx={{ display: "flex", justifyContent: "center" }}>
+            <form onSubmit={formik.handleSubmit}>
+                <CardContent
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 3,
+                        width: 300,
                     }}
-                    errors={errors}
-                />
-                <Input
-                    label={"User ID"}
-                    register={register}
-                    options={{
-                        required: "ID is required!",
-                        minLength: 3,
-                        maxLength: 20,
-                        pattern: /[A-Za-z0-9]/g,
-                    }}
-                    errors={errors}
-                />
-                <Input
-                    label={"Password"}
-                    register={register}
-                    options={{
-                        required: "Password is required!",
-                        minLength: 4,
-                        maxLength: 20,
-                        pattern: /[A-Za-z0-9]/g,
-                    }}
-                    type={"password"}
-                    errors={errors}
-                />
-                <Input
-                    label={"Check Password"}
-                    register={register}
-                    options={{
-                        required: true,
-                        minLength: 4,
-                        maxLength: 20,
-                        pattern: /[A-Za-z0-9]/g,
-                        validate: validatePassword,
-                    }}
-                    type={"password"}
-                    errors={errors}
-                />
-            </div>
-            <div className="flex gap-5">
-                <Button text={"Submit"} type={"submit"} />
-                <Button text={"Sign-in"} clickEvent={setIsSignInView} />
-            </div>
-        </form>
+                >
+                    <CardHeader title="Sign Up" />
+                    <SignTextField label="Name" name="name" formik={formik} />
+                    <SignTextField label="ID" name="userId" formik={formik} />
+                    <SignTextField
+                        label="Password"
+                        name="password"
+                        formik={formik}
+                        type="password"
+                    />
+                    <SignTextField
+                        label="Confirm Password"
+                        name="confirmPassword"
+                        formik={formik}
+                        type="password"
+                    />
+                    <CardActions sx={{ justifyContent: "space-around" }}>
+                        <Button variant="contained" type="submit">
+                            submit
+                        </Button>
+                        <Button variant="contained" onClick={setIsSignInTab}>
+                            Sign in
+                        </Button>
+                    </CardActions>
+                </CardContent>
+            </form>
+        </Card>
     );
-};
-
-SignUp.propTypes = {
-    setIsSignInView: PropTypes.func.isRequired,
 };
 
 export default SignUp;
