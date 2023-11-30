@@ -30,7 +30,7 @@ const CenterItem = ({ center, clickEvent, btnName }) => {
                 display: "flex",
                 alignItems: "end",
                 justifyContent: "space-between",
-                marginY: 3,
+                marginBottom: 3,
             }}
         >
             <CardContent>

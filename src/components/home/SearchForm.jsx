@@ -25,7 +25,7 @@ const SearchForm = () => {
     };
 
     return (
-        <Card elevation={6}>
+        <Card elevation={6} sx={{ marginBottom: 3 }}>
             <CardHeader title="코로나 예방접종센터 검색" />
             <CardContent
                 sx={{
