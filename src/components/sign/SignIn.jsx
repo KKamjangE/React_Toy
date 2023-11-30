@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useSignStore } from "../../store/store";
 import { useFormik } from "formik";
-import { SignInSchema } from "../../contents/validationSchema";
+import { signInSchema } from "../../contents/validationSchema";
 import SignTextField from "./SignTextField";
 import Send from "@mui/icons-material/Send";
 import { LoadingButton } from "@mui/lab";
@@ -23,7 +23,7 @@ const SignIn = () => {
             userId: "",
             password: "",
         },
-        validationSchema: SignInSchema,
+        validationSchema: signInSchema,
         onSubmit: (form) => {
             mutate({
                 userId: form.userId,

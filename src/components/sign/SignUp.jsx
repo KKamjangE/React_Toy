@@ -8,7 +8,7 @@ import {
     CardHeader,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { SignUpSchema } from "../../contents/validationSchema";
+import { signUpSchema } from "../../contents/validationSchema";
 import SignTextField from "./SignTextField";
 import { Send } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
@@ -25,7 +25,7 @@ const SignUp = () => {
             password: "",
             confirmPassword: "",
         },
-        validationSchema: SignUpSchema,
+        validationSchema: signUpSchema,
         onSubmit: (form) => {
             mutate({
                 name: form.name,
