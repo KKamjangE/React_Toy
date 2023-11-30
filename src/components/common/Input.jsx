@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import PropTypes from "prop-types";
 
-const SignTextField = ({ label, name, formik, type = "text" }) => {
+const Input = ({ label, name, formik, type = "text" }) => {
     return (
         <TextField
             label={label}
@@ -18,11 +18,11 @@ const SignTextField = ({ label, name, formik, type = "text" }) => {
     );
 };
 
-SignTextField.propTypes = {
+Input.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     formik: PropTypes.object.isRequired,
     type: PropTypes.string,
 };
 
-export default SignTextField;
+export default Input;
