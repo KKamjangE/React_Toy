@@ -33,7 +33,7 @@ const SignIn = () => {
     });
 
     return (
-        <Card sx={{ display: "flex", justifyContent: "center" }}>
+        <Card elevation={6} sx={{ display: "flex", justifyContent: "center" }}>
             <form onSubmit={formik.handleSubmit}>
                 <CardContent
                     sx={{
