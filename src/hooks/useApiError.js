@@ -48,6 +48,10 @@ const handler40910001 = () => {
     toast.error("아이디 또는 비밀번호가 일치하지 않습니다.");
 };
 
+const handler40910002 = () => {
+    toast.error("이미 존재하는 아이디 입니다.");
+};
+
 const handler500 = () => {
     toast.error("서버에서 알 수 없는 문제가 발생하였습니다.");
 };
@@ -60,6 +64,7 @@ const handlers = {
     409: {
         default: handler409,
         10001: handler40910001,
+        10002: handler40910002,
     },
     500: {
         default: handler500,
