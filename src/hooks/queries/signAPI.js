@@ -23,14 +23,14 @@ export const usePostSignIn = () => {
 };
 
 export const usePostSignUp = () => {
-    const { setIsSignInView } = useSignStore((state) => ({
-        setIsSignInView: state.setIsSignInView,
+    const { setIsSignInTab } = useSignStore((state) => ({
+        setIsSignInTab: state.setIsSignInTab,
     }));
     return useMutation({
         mutationFn: signAPI.postSignUp,
         onSuccess: (data) => {
             if (data.statusCode === 200) {
-                setIsSignInView();
+                setIsSignInTab();
             }
         },
     });
