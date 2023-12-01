@@ -54,3 +54,19 @@ export const useMemberStore = create(
         },
     ),
 );
+
+export const useThemeStore = create(
+    persist(
+        (set) => ({
+            isDarkMode: false,
+            setIsDarkMode: () =>
+                set((state) => ({
+                    isDarkMode: !state.isDarkMode,
+                })),
+        }),
+        {
+            name: "theme-storage",
+            storage: createJSONStorage(() => localStorage),
+        },
+    ),
+);
