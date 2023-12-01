@@ -1,13 +1,23 @@
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useMemberStore } from "../../store/store";
+import { useMemberStore, useThemeStore } from "../../store/store";
 import { pathnames } from "../../contents/pathnames";
-import { AppBar, Button, Container, Toolbar, Typography } from "@mui/material";
+import {
+    AppBar,
+    Button,
+    Container,
+    IconButton,
+    Toolbar,
+    Typography,
+} from "@mui/material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 const Header = () => {
     const { memberInfo, clearMember } = useMemberStore((state) => ({
         memberInfo: state.memberInfo,
         clearMember: state.clearMember,
     }));
+    const { isDarkMode, setIsDarkMode } = useThemeStore();
 
     const navigater = useNavigate();
 
@@ -44,6 +54,9 @@ const Header = () => {
                             Sign
                         </Button>
                     )}
+                    <IconButton onClick={setIsDarkMode}>
+                        {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+                    </IconButton>
                 </Toolbar>
             </Container>
         </AppBar>
