@@ -1,7 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material";
 import PropTypes from "prop-types";
 import { useThemeStore } from "../../store/store";
-import { indigo } from "@mui/material/colors";
+import { grey, indigo } from "@mui/material/colors";
 
 const CustomThemeProvider = ({ children }) => {
     const { isDarkMode } = useThemeStore((state) => ({
@@ -21,6 +21,13 @@ const CustomThemeProvider = ({ children }) => {
                 styleOverrides: {
                     root: {
                         padding: 20,
+                    },
+                },
+            },
+            MuiButton: {
+                styleOverrides: {
+                    textPrimary: {
+                        color: isDarkMode ? "" : grey.A100,
                     },
                 },
             },
