@@ -18,7 +18,7 @@ const Nivo = ({ data }) => {
     return (
         <ResponsivePie
             data={chartData}
-            margin={{ top: 40, right: 40, bottom: 80, left: 40 }}
+            margin={{ top: 20, bottom: 80 }}
             sortByValue={true}
             activeId={activeId}
             arcLabelsTextColor={{

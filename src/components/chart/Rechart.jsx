@@ -1,6 +1,14 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { Cell, LabelList, Legend, Pie, PieChart, Tooltip } from "recharts";
+import {
+    Cell,
+    LabelList,
+    Legend,
+    Pie,
+    PieChart,
+    ResponsiveContainer,
+    Tooltip,
+} from "recharts";
 
 const Rechart = ({ data }) => {
     const colors = {
@@ -24,31 +32,33 @@ const Rechart = ({ data }) => {
     chartData.sort((a, b) => a.value - b.value);
 
     return (
-        <PieChart width={400} height={350}>
-            <Pie
-                data={chartData}
-                dataKey={"value"}
-                nameKey={"name"}
-                isAnimationActive={false}
-                label={(entry) => entry.name}
-            >
-                {chartData.map((item, index) => (
-                    <Cell
-                        key={`cell-${index}`}
-                        fill={colors[index]}
-                        fillOpacity={
-                            activeName && activeName !== item.name && 0.5
-                        }
-                    />
-                ))}
-                <LabelList dataKey={"value"} />
-            </Pie>
-            <Tooltip />
-            <Legend
-                onMouseEnter={(prop) => setActiveName(prop.value)}
-                onMouseLeave={() => setActiveName(null)}
-            />
-        </PieChart>
+        <ResponsiveContainer>
+            <PieChart>
+                <Pie
+                    data={chartData}
+                    dataKey={"value"}
+                    nameKey={"name"}
+                    isAnimationActive={false}
+                    label={(entry) => entry.name}
+                >
+                    {chartData.map((item, index) => (
+                        <Cell
+                            key={`cell-${index}`}
+                            fill={colors[index]}
+                            fillOpacity={
+                                activeName && activeName !== item.name && 0.5
+                            }
+                        />
+                    ))}
+                    <LabelList dataKey={"value"} />
+                </Pie>
+                <Tooltip />
+                <Legend
+                    onMouseEnter={(prop) => setActiveName(prop.value)}
+                    onMouseLeave={() => setActiveName(null)}
+                />
+            </PieChart>
+        </ResponsiveContainer>
     );
 };
 

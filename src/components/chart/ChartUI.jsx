@@ -2,7 +2,7 @@ import { useGetCenters } from "../../hooks/queries/centerAPI";
 import { useState } from "react";
 import Nivo from "./Nivo";
 import Rechart from "./Rechart";
-import { Button } from "@mui/material";
+import { Button, Card, CardContent, Container } from "@mui/material";
 
 const ChartUI = () => {
     const { data } = useGetCenters();
@@ -14,10 +14,27 @@ const ChartUI = () => {
     };
 
     return (
-        <section className="flex flex-col items-center w-1/3 h-96 rounded bg-gray-700 px-12 py-5 shadow-lg shadow-slate-950 text-black text-xs">
-            <Button onClick={changeChart}>Chart Change</Button>
-            {change ? <Nivo data={data.data} /> : <Rechart data={data.data} />}
-        </section>
+        <Container maxWidth="sm">
+            <Card
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <CardContent sx={{ width: "100%", height: 400 }}>
+                    {change ? (
+                        <Nivo data={data.data} />
+                    ) : (
+                        <Rechart data={data.data} />
+                    )}
+                </CardContent>
+                <Button variant="contained" onClick={changeChart}>
+                    {change ? "Go rechart" : "go nivo chart"}
+                </Button>
+            </Card>
+        </Container>
     );
 };
 
