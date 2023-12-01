@@ -1,4 +1,9 @@
-import { InfoWindowF, MarkerF, useGoogleMap } from "@react-google-maps/api";
+import {
+    InfoBoxF,
+    InfoWindowF,
+    MarkerF,
+    useGoogleMap,
+} from "@react-google-maps/api";
 import PropTypes from "prop-types";
 import MarkerInfoUI from "./MarkerInfoUI";
 
@@ -28,7 +33,10 @@ const MarkerUI = ({
                 }}
             >
                 {selectedMarkerId === center.id && (
-                    <InfoWindowF onCloseClick={() => setSelectedMarkerId(null)}>
+                    <InfoWindowF
+                        onCloseClick={() => setSelectedMarkerId(null)}
+                        options={{}}
+                    >
                         <MarkerInfoUI center={center} />
                     </InfoWindowF>
                 )}

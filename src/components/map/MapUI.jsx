@@ -45,7 +45,7 @@ const MapUI = () => {
         <>
             {isLoaded && (
                 <GoogleMap
-                    mapContainerStyle={{ width: "1200px", height: "650px" }}
+                    mapContainerStyle={{ width: "100%", height: "650px" }}
                     center={centerCoord}
                     onLoad={onLoad}
                     onUnmount={onUnmount}

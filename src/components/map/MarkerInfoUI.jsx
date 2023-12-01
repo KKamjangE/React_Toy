@@ -1,6 +1,7 @@
 import { useGoogleMap } from "@react-google-maps/api";
 import PropTypes from "prop-types";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const MarkerInfoUI = ({ center }) => {
     const map = useGoogleMap();
@@ -10,15 +11,41 @@ const MarkerInfoUI = ({ center }) => {
     };
 
     return (
-        <div className="text-black flex flex-col gap-2 items-center">
-            <h3>{center.centerName}</h3>
-            <p>Call: {center.phoneNumber}</p>
-            <div className="flex justify-center gap-2">
-                <span>{center.lat}</span>
-                <span>{center.lng}</span>
-            </div>
-            <Button onClick={handleZoom}>확대</Button>
-        </div>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                p: 1,
+                color: grey[700],
+            }}
+        >
+            <Typography variant="subtitle1">{center.centerName}</Typography>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "",
+                    alignItems: "end",
+                    gap: 5,
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Typography variant="caption">
+                        Call: {center.phoneNumber}
+                    </Typography>
+                    <Typography variant="caption">lat: {center.lat}</Typography>
+                    <Typography variant="caption">lng: {center.lng}</Typography>
+                </Box>
+                <Button variant="contained" onClick={handleZoom}>
+                    확대
+                </Button>
+            </Box>
+        </Box>
     );
 };
 
