@@ -23,7 +23,14 @@ const CenterList = () => {
                     />
                 ))
             ) : (
-                <Paper elevation={6} sx={{ paddingX: 10, paddingY: 3 }}>
+                <Paper
+                    elevation={6}
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        paddingY: 3,
+                    }}
+                >
                     <Typography variant="subtitle1">
                         저장된 데이터가 없습니다.
                     </Typography>
