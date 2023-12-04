@@ -14,7 +14,7 @@ const ListFilter = () => {
     const { centerType, setCenterType } = useCenterTypeStore();
     return (
         <Card elevation={6} sx={{ marginBottom: 3 }}>
-            <CardHeader title="Filter" />
+            <CardHeader title="List Filter" />
             <CardContent>
                 <CardActions>
                     <FormControl fullWidth>
