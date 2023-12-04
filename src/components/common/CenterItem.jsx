@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useMemberStore } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import {
+    Box,
     Button,
     Card,
     CardActions,
@@ -36,9 +37,14 @@ const CenterItem = ({ center, clickEvent, btnName }) => {
             <CardContent>
                 <Typography variant="h6">{center.centerName}</Typography>
                 <Typography>{center.address}</Typography>
-                <Typography variant="caption">
-                    Last update: {center.updatedAt}
-                </Typography>
+                <Box sx={{ display: "flex", gap: 1 }}>
+                    <Typography variant="caption">
+                        Last update: {center.updatedAt}
+                    </Typography>
+                    <Typography variant="caption">
+                        ({center.centerType})
+                    </Typography>
+                </Box>
             </CardContent>
             <CardActions>
                 <Button variant="contained" onClick={handleClick}>
