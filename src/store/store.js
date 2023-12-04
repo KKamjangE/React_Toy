@@ -70,3 +70,8 @@ export const useThemeStore = create(
         },
     ),
 );
+
+export const useCenterTypeStore = create((set) => ({
+    centerType: "",
+    setCenterType: (newType) => set({ centerType: newType }),
+}));

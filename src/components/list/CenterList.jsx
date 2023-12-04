@@ -1,10 +1,13 @@
 import { Paper, Typography } from "@mui/material";
 import { useDeleteCenter, useGetCenters } from "../../hooks/queries/centerAPI";
 import CenterItem from "../common/CenterItem";
+import { useCenterTypeStore } from "../../store/store";
 
 const CenterList = () => {
     const { data } = useGetCenters();
-
+    const { centerType } = useCenterTypeStore((state) => ({
+        centerType: state.centerType,
+    }));
     const { mutate } = useDeleteCenter();
 
     const handleDeleteCenter = (center) => {
@@ -14,14 +17,20 @@ const CenterList = () => {
     return (
         <>
             {data.data.length > 0 ? (
-                data.data.map((center) => (
-                    <CenterItem
-                        key={center.id}
-                        center={center}
-                        clickEvent={handleDeleteCenter}
-                        btnName={"삭제"}
-                    />
-                ))
+                data.data
+                    .filter(
+                        (center) =>
+                            centerType === "" ||
+                            centerType === center.centerType,
+                    )
+                    .map((center) => (
+                        <CenterItem
+                            key={center.id}
+                            center={center}
+                            clickEvent={handleDeleteCenter}
+                            btnName={"삭제"}
+                        />
+                    ))
             ) : (
                 <Paper
                     elevation={6}

@@ -4,18 +4,22 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Suspense } from "react";
 import FallbackUI from "../components/common/FallbackUI";
 import SkeletonCenterItem from "../components/skeleton/SkeletonCenterItem";
+import ListFilter from "./../components/list/ListFilter";
 
 const List = () => {
     return (
-        <QueryErrorResetBoundary>
-            {({ reset }) => (
-                <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
-                    <Suspense fallback={<SkeletonCenterItem />}>
-                        <CenterList />
-                    </Suspense>
-                </ErrorBoundary>
-            )}
-        </QueryErrorResetBoundary>
+        <>
+            <ListFilter />
+            <QueryErrorResetBoundary>
+                {({ reset }) => (
+                    <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
+                        <Suspense fallback={<SkeletonCenterItem />}>
+                            <CenterList />
+                        </Suspense>
+                    </ErrorBoundary>
+                )}
+            </QueryErrorResetBoundary>
+        </>
     );
 };
 
