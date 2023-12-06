@@ -1,5 +1,5 @@
-import { usePostSignUp } from "../../hooks/queries/signAPI";
-import { useSignStore } from "../../store/store";
+import { usePostSignUp } from "@/hooks/queries/signAPI";
+import { useSignStore } from "@/store/store";
 import {
     Button,
     Card,
@@ -8,10 +8,10 @@ import {
     CardHeader,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { signUpSchema } from "../../contents/validationSchema";
+import { signUpSchema } from "@/contents/validationSchema";
 import { Send } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import Input from "./../common/Input";
+import Input from "@/components/common/Input";
 
 const SignUp = () => {
     const { setIsSignInTab } = useSignStore((state) => ({

@@ -1,6 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useSearchStateStore } from "../../store/store";
-import { queryKeys } from "../../contents/queryKeys";
+import { useSearchStateStore } from "@/store/store";
+import { queryKeys } from "@/contents/queryKeys";
 import {
     Button,
     Card,

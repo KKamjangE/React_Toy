@@ -3,10 +3,10 @@ import {
     useJsApiLoader,
     MarkerClustererF,
 } from "@react-google-maps/api";
-import { useGetCenters } from "../../hooks/queries/centerAPI";
+import { useGetCenters } from "@/hooks/queries/centerAPI";
 import { useCallback, useState } from "react";
-import useCalculateCoordinates from "../../hooks/map/useCalculateCoordinates";
-import MarkerUI from "./MarkerUI";
+import useCalculateCoordinates from "@/hooks/map/useCalculateCoordinates";
+import MarkerUI from "@/components/map/MarkerUI";
 
 const MapUI = () => {
     const { data } = useGetCenters();

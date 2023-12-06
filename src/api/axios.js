@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
-import { BASE_URL } from "./api";
-import { useMemberStore } from "../store/store";
+import { BASE_URL } from "@/api/api";
+import { useMemberStore } from "@/store/store";
 
 // axios 기본 설정
 export const axiosInstance = axios.create({

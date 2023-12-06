@@ -1,5 +1,5 @@
-import { API_PATH } from "../api";
-import { deleteAPI, getAPI, getPotalAPI, postAPI } from "../axios";
+import { API_PATH } from "@/api/api";
+import { deleteAPI, getAPI, getPotalAPI, postAPI } from "@/api/axios";
 
 const getSearchCenters = (page, perPage) => {
     return getPotalAPI({

@@ -1,4 +1,4 @@
-import { usePostSignIn } from "./../../hooks/queries/signAPI";
+import { usePostSignIn } from "@/hooks/queries/signAPI";
 import {
     Button,
     Card,
@@ -6,10 +6,10 @@ import {
     CardContent,
     CardHeader,
 } from "@mui/material";
-import { useSignStore } from "../../store/store";
+import { useSignStore } from "@/store/store";
 import { useFormik } from "formik";
-import { signInSchema } from "../../contents/validationSchema";
-import Input from "./../common/Input";
+import { signInSchema } from "@/contents/validationSchema";
+import Input from "@/components/common/Input";
 import Send from "@mui/icons-material/Send";
 import { LoadingButton } from "@mui/lab";
 

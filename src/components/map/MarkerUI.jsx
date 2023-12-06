@@ -1,11 +1,6 @@
-import {
-    InfoBoxF,
-    InfoWindowF,
-    MarkerF,
-    useGoogleMap,
-} from "@react-google-maps/api";
+import { InfoWindowF, MarkerF, useGoogleMap } from "@react-google-maps/api";
 import PropTypes from "prop-types";
-import MarkerInfoUI from "./MarkerInfoUI";
+import MarkerInfoUI from "@/components/map/MarkerInfoUI";
 
 const MarkerUI = ({
     center,

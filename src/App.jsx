@@ -1,15 +1,15 @@
-import Router from "./routes/Router";
+import Router from "@/routes/Router";
 import {
     QueryCache,
     QueryClient,
     QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import useApiError from "./hooks/useApiError";
+import useApiError from "@/hooks/useApiError";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CssBaseline } from "@mui/material";
-import CustomThemeProvider from "./components/common/CustomThemeProvider";
+import CustomThemeProvider from "@/components/common/CustomThemeProvider";
 
 function App() {
     const { handleError } = useApiError();

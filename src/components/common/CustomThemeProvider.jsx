@@ -1,6 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material";
 import PropTypes from "prop-types";
-import { useThemeStore } from "../../store/store";
+import { useThemeStore } from "@/store/store";
 import { grey, indigo } from "@mui/material/colors";
 
 const CustomThemeProvider = ({ children }) => {

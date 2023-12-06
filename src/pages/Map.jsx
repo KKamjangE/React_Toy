@@ -1,9 +1,9 @@
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
-import MapUI from "./../components/map/MapUI";
+import MapUI from "@/components/map/MapUI";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import FallbackUI from "../components/common/FallbackUI";
-import SkeletonMap from "../components/skeleton/SkeletonMap";
+import FallbackUI from "@/components/common/FallbackUI";
+import SkeletonMap from "@/components/skeleton/SkeletonMap";
 
 const Map = () => {
     return (

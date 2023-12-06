@@ -1,7 +1,7 @@
-import { useGetCenters } from "../../hooks/queries/centerAPI";
+import { useGetCenters } from "@/hooks/queries/centerAPI";
 import { useState } from "react";
-import Nivo from "./Nivo";
-import Rechart from "./Rechart";
+import Nivo from "@/components/chart/Nivo";
+import Rechart from "@/components/chart/Rechart";
 import { Button, Card, CardContent, Container } from "@mui/material";
 
 const ChartUI = () => {

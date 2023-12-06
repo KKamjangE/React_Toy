@@ -1,14 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./../components/common/Header";
-import Layout from "./../components/common/Layout";
-import Home from "./../pages/Home";
-import PrivateRoute from "./PrivateRoute";
-import List from "./../pages/List";
-import PublicRoute from "./PublicRoute";
-import Sign from "./../pages/Sign";
-import Map from "../pages/Map";
-import { pathnames } from "../contents/pathnames";
-import Chart from "../pages/Chart";
+import Header from "@/components/common/Header";
+import Layout from "@/components/common/Layout";
+import Home from "@/pages/Home";
+import List from "@/pages/List";
+import Sign from "@/pages/Sign";
+import Map from "@/pages/Map";
+import Chart from "@/pages/Chart";
+import Test from "@/pages/Test";
+import { pathnames } from "@/contents/pathnames";
+import PrivateRoute from "@/routes/PrivateRoute";
+import PublicRoute from "@/routes/PublicRoute";
 
 const Router = () => {
     return (
@@ -17,6 +18,7 @@ const Router = () => {
             <Routes>
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
+                    <Route path={"/test"} element={<Test />} />
                     <Route element={<PrivateRoute />}>
                         <Route path={pathnames.list} element={<List />} />
                         <Route path={pathnames.map} element={<Map />} />

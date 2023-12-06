@@ -3,9 +3,9 @@ import {
     useMutation,
     useSuspenseQuery,
 } from "@tanstack/react-query";
-import centerAPI from "../../api/centerAPI";
-import { queryKeys } from "../../contents/queryKeys";
-import { useSearchStateStore } from "../../store/store";
+import centerAPI from "@/api/centerAPI";
+import { queryKeys } from "@/contents/queryKeys";
+import { useSearchStateStore } from "@/store/store";
 
 export const useGetSearchCenters = () => {
     const { page, perPage } = useSearchStateStore((state) => ({

@@ -1,4 +1,4 @@
-import ErrorImg from "../assets/images/internalServerError.png";
+import ErrorImg from "@/assets/images/internalServerError.png";
 
 const InternalServerError = () => {
     return (

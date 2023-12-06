@@ -1,8 +1,5 @@
-import {
-    useGetSearchCenters,
-    usePostCenter,
-} from "../../hooks/queries/centerAPI";
-import CenterItem from "../common/CenterItem";
+import { useGetSearchCenters, usePostCenter } from "@/hooks/queries/centerAPI";
+import CenterItem from "@/components/common/CenterItem";
 
 const SearchResult = () => {
     const { data } = useGetSearchCenters();

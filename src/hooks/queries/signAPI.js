@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import signAPI from "../../api/signAPI";
-import { useMemberStore, useSignStore } from "../../store/store";
+import signAPI from "@/api/signAPI";
+import { useMemberStore, useSignStore } from "@/store/store";
 import { useNavigate } from "react-router-dom";
 
 export const usePostSignIn = () => {

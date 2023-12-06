@@ -8,7 +8,7 @@ import {
     MenuItem,
     Select,
 } from "@mui/material";
-import { useCenterTypeStore } from "../../store/store";
+import { useCenterTypeStore } from "@/store/store";
 
 const ListFilter = () => {
     const { centerType, setCenterType } = useCenterTypeStore();

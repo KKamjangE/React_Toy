@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useMemberStore } from "../../store/store";
+import { useMemberStore } from "@/store/store";
 import { useNavigate } from "react-router-dom";
 import {
     Box,

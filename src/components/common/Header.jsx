@@ -1,6 +1,6 @@
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useMemberStore, useThemeStore } from "../../store/store";
-import { pathnames } from "../../contents/pathnames";
+import { useMemberStore, useThemeStore } from "@/store/store";
+import { pathnames } from "@/contents/pathnames";
 import {
     AppBar,
     Button,

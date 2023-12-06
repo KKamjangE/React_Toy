@@ -1,7 +1,7 @@
 import { Paper, Typography } from "@mui/material";
-import { useDeleteCenter, useGetCenters } from "../../hooks/queries/centerAPI";
-import CenterItem from "../common/CenterItem";
-import { useCenterTypeStore } from "../../store/store";
+import { useDeleteCenter, useGetCenters } from "@/hooks/queries/centerAPI";
+import CenterItem from "@/components/common/CenterItem";
+import { useCenterTypeStore } from "@/store/store";
 
 const CenterList = () => {
     const { data } = useGetCenters();

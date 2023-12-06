@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useMemberStore } from "../store/store";
+import { useMemberStore } from "@/store/store";
 
 const PrivateRoute = () => {
     const isSignIn = useMemberStore((state) => state.isSignIn);

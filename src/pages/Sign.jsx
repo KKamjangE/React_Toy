@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
-import SignIn from "../components/sign/SignIn";
-import SignUp from "../components/sign/SignUp";
-import { useSignStore } from "../store/store";
+import SignIn from "@/components/sign/SignIn";
+import SignUp from "@/components/sign/SignUp";
+import { useSignStore } from "@/store/store";
 
 const Sign = () => {
     const { isSignInTab } = useSignStore((state) => ({
