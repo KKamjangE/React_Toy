@@ -1,28 +1,8 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useSearchStateStore } from "@/store/store";
-import { queryKeys } from "@/contents/queryKeys";
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardHeader,
-    TextField,
-} from "@mui/material";
+import { Card, CardContent, CardHeader, TextField } from "@mui/material";
 
 const SearchForm = () => {
     const { page, perPage, setPage, setPerPage } = useSearchStateStore();
-    const queryClient = useQueryClient();
-
-    const handleSearch = () => {
-        queryClient.fetchQuery({ queryKey: [queryKeys.getSearchCenters] });
-    };
-
-    const handleEnter = (e) => {
-        if (e.key === "Enter") {
-            handleSearch();
-        }
-    };
 
     return (
         <Card elevation={6} sx={{ marginBottom: 3 }}>
@@ -42,7 +22,6 @@ const SearchForm = () => {
                     onChange={(e) => {
                         setPage(e.target.value);
                     }}
-                    onKeyDown={handleEnter}
                     size="small"
                     autoComplete="off"
                 />
@@ -51,15 +30,9 @@ const SearchForm = () => {
                     label="perPage"
                     defaultValue={perPage}
                     onChange={(e) => setPerPage(e.target.value)}
-                    onKeyDown={handleEnter}
                     size="small"
                     autoComplete="off"
                 />
-                <CardActions>
-                    <Button variant="contained" onClick={handleSearch}>
-                        검색
-                    </Button>
-                </CardActions>
             </CardContent>
         </Card>
     );

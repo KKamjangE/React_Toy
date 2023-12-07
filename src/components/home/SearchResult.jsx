@@ -1,9 +1,13 @@
 import { useGetSearchCenters, usePostCenter } from "@/hooks/queries/centerAPI";
 import CenterItem from "@/components/common/CenterItem";
+import { useSearchStateStore } from "@/store/store";
 
 const SearchResult = () => {
-    const { data } = useGetSearchCenters();
-
+    const { page, perPage } = useSearchStateStore((state) => ({
+        page: state.page,
+        perPage: state.perPage,
+    }));
+    const { data } = useGetSearchCenters(page, perPage);
     const { mutate } = usePostCenter();
 
     const handleSaveCenter = (center) => {

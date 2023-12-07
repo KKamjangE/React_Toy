@@ -5,19 +5,13 @@ import {
 } from "@tanstack/react-query";
 import centerAPI from "@/api/centerAPI";
 import { queryKeys } from "@/contents/queryKeys";
-import { useSearchStateStore } from "@/store/store";
 
-export const useGetSearchCenters = () => {
-    const { page, perPage } = useSearchStateStore((state) => ({
-        page: state.page,
-        perPage: state.perPage,
-    }));
-
+export const useGetSearchCenters = (page, perPage) => {
     const { data } = useSuspenseQuery({
-        queryKey: [queryKeys.getSearchCenters],
+        queryKey: [queryKeys.getSearchCenters, page, perPage],
         queryFn: () => centerAPI.getSearchCenters(page, perPage),
-        staleTime: 1000 * 60 * 1,
-        gcTime: 1000 * 60 * 3,
+        staleTime: 1000 * 60 * 3,
+        gcTime: 1000 * 60 * 5,
     });
 
     return {
