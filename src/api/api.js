@@ -1,6 +1,6 @@
-export const BASE_URL = "http://localhost:8080"; // 백엔드 base url
+export const BASE_URL = "http://localhost:8080"; // server base url
 
-// endPoint 객체
+// api url path
 export const API_PATH = {
     GET_SEARCH_CENTERS: (page, perPage) =>
         `/centers?page=${page}&perPage=${perPage}&serviceKey=${
