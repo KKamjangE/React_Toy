@@ -13,9 +13,10 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
 const Header = () => {
-    const { memberInfo, clearMember } = useMemberStore((state) => ({
+    const { memberInfo, clearMember, isSignIn } = useMemberStore((state) => ({
         memberInfo: state.memberInfo,
         clearMember: state.clearMember,
+        isSignIn: state.isSignIn,
     }));
     const { isDarkMode, setIsDarkMode } = useThemeStore();
 
@@ -45,7 +46,7 @@ const Header = () => {
                     <Button component={RouterLink} to={pathnames.chart}>
                         Chart
                     </Button>
-                    {memberInfo.memberName ? (
+                    {isSignIn ? (
                         <Button onClick={onHandleClickSignOut}>
                             {memberInfo.memberName}
                         </Button>
