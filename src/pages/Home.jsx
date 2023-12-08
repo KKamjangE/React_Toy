@@ -6,8 +6,12 @@ import SkeletonCenterItem from "@/components/skeleton/SkeletonCenterItem";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import SearchPagination from "@/components/home/SearchPagination";
+import { useSearchStateStore } from "@/store/store";
 
 const Home = () => {
+    const { perPage } = useSearchStateStore((state) => ({
+        perPage: state.perPage,
+    }));
     return (
         <>
             <SearchForm />
@@ -15,7 +19,9 @@ const Home = () => {
                 {({ reset }) => (
                     <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
                         <Suspense
-                            fallback={Array(10).fill(<SkeletonCenterItem />)}
+                            fallback={Array(perPage).fill(
+                                <SkeletonCenterItem />,
+                            )}
                         >
                             <SearchResult />
                             <SearchPagination />
