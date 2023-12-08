@@ -18,7 +18,7 @@ const Router = () => {
             <Routes>
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path={"/test"} element={<Test />} />
+                    {/* <Route path={"/test"} element={<Test />} /> */}
                     <Route element={<PrivateRoute />}>
                         <Route path={pathnames.list} element={<List />} />
                         <Route path={pathnames.map} element={<Map />} />
