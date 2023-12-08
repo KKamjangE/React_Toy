@@ -6,7 +6,7 @@ import List from "@/pages/List";
 import Sign from "@/pages/Sign";
 import Map from "@/pages/Map";
 import Chart from "@/pages/Chart";
-import Test from "@/pages/Test";
+// import Test from "@/pages/Test";
 import { pathnames } from "@/contents/pathnames";
 import PrivateRoute from "@/routes/PrivateRoute";
 import PublicRoute from "@/routes/PublicRoute";
