@@ -1,11 +1,13 @@
 import { useGetSearchCenters, usePostCenter } from "@/hooks/queries/centerAPI";
 import CenterItem from "@/components/common/CenterItem";
 import { useSearchStateStore } from "@/store/store";
+import { useEffect } from "react";
 
 const SearchResult = () => {
-    const { page, perPage } = useSearchStateStore((state) => ({
+    const { page, perPage, setMaxPage } = useSearchStateStore((state) => ({
         page: state.page,
         perPage: state.perPage,
+        setMaxPage: state.setMaxPage,
     }));
     const { data } = useGetSearchCenters(page, perPage);
     const { mutate } = usePostCenter();
@@ -22,6 +24,10 @@ const SearchResult = () => {
             centerType: center.centerType,
         });
     };
+
+    useEffect(() => {
+        setMaxPage(Math.ceil(data.data.totalCount / perPage));
+    }, [perPage]);
 
     return (
         <>
