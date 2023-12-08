@@ -1,39 +1,46 @@
 import { useSearchStateStore } from "@/store/store";
-import { Card, CardContent, CardHeader, TextField } from "@mui/material";
+import {
+    Card,
+    CardActions,
+    CardHeader,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+} from "@mui/material";
 
 const SearchForm = () => {
-    const { page, perPage, setPage, setPerPage } = useSearchStateStore();
+    const { perPage, setPerPage } = useSearchStateStore((state) => ({
+        perPage: state.perPage,
+        setPerPage: state.setPerPage,
+    }));
 
     return (
-        <Card elevation={6} sx={{ marginBottom: 3 }}>
-            <CardHeader title="코로나 예방접종센터 검색" />
-            <CardContent
-                sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 5,
-                }}
-            >
-                <TextField
-                    id="page"
-                    label="page"
-                    defaultValue={page}
-                    onChange={(e) => {
-                        setPage(e.target.value);
-                    }}
-                    size="small"
-                    autoComplete="off"
-                />
-                <TextField
-                    id="perPage"
-                    label="perPage"
-                    defaultValue={perPage}
-                    onChange={(e) => setPerPage(e.target.value)}
-                    size="small"
-                    autoComplete="off"
-                />
-            </CardContent>
+        <Card
+            elevation={6}
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: 3,
+            }}
+        >
+            <CardHeader title="코로나 예방접종센터 검색 결과" />
+            <CardActions>
+                <FormControl>
+                    <InputLabel id="perPage">perPage</InputLabel>
+                    <Select
+                        id="perPage"
+                        label="perPage"
+                        value={perPage}
+                        onChange={(e) => setPerPage(e.target.value)}
+                    >
+                        <MenuItem value={10}>10</MenuItem>
+                        <MenuItem value={50}>50</MenuItem>
+                        <MenuItem value={100}>100</MenuItem>
+                    </Select>
+                </FormControl>
+            </CardActions>
         </Card>
     );
 };
