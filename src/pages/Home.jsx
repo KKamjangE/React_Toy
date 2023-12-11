@@ -19,9 +19,11 @@ const Home = () => {
                 {({ reset }) => (
                     <ErrorBoundary onReset={reset} fallbackRender={FallbackUI}>
                         <Suspense
-                            fallback={Array(perPage).fill(
-                                <SkeletonCenterItem />,
-                            )}
+                            fallback={Array(perPage)
+                                .fill(null)
+                                .map((_, idx) => (
+                                    <SkeletonCenterItem key={idx} />
+                                ))}
                         >
                             <SearchResult />
                             <SearchPagination />
