@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080"; // server base url
+export const BASE_URL = import.meta.env.VITE_SPRING_BASE_URL; // server base url
 
 // api url path
 export const API_PATH = {
