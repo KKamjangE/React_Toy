@@ -4,7 +4,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 export const useSearchStateStore = create((set) => ({
     page: 1,
     perPage: 10,
-    maxPage: null,
+    maxPage: 10,
     setPage: (newPage) => set({ page: newPage }),
     setPerPage: (newPerPage) => set({ perPage: newPerPage }),
     setMaxPage: (newMaxPage) => set({ maxPage: newMaxPage }),
